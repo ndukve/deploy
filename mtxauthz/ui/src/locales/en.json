@@ -1,0 +1,165 @@
+{
+  "common": {
+    "copied": "Copied to clipboard!",
+    "copy": "Copy",
+    "hide": "Hide",
+    "show": "Show",
+    "retry": "Retry",
+    "back": "Back",
+    "next": "Next",
+    "close": "Close"
+  },
+  "home": {
+    "add": "Add",
+    "documentation": "Documentation",
+    "documentation_link": "https://docs.pvarki.fi/en/docs/guides/mtx-guide",
+    "error_loading_streams": "There was an error when loading streams. Please try again later.",
+    "loading": "Loading...",
+    "result": "result",
+    "results": "results",
+    "description": "Stream, watch, and manage live video feeds from connected devices.",
+    "search": "Search streams...",
+    "started_by": "Started by: "
+  },
+  "live": {
+    "open_in_browser": "Open in Browser"
+  },
+  "onboarding": {
+    "back": "Back",
+    "clickToEnlarge": "Click to enlarge",
+    "completion": "Onboarding Completed!",
+    "completionDesc": "You're all set and ready to operate at full capacity.",
+    "finish": "Finish",
+    "imageMissing": "Image not available",
+    "next": "Next",
+    "of": "of",
+    "progressSaved": "Your onboarding progress has been saved.",
+    "review": "Review onboarding",
+    "step": "Step",
+    "steps": {
+      "welcome": {
+        "title": "Welcome to MediaMTX",
+        "description": "MediaMTX lets you stream and watch live video feeds from connected devices. This short walkthrough will show you where to find everything."
+      },
+      "walkthrough": {
+        "title": "Finding your way around",
+        "description": "(1) Tap any stream tile on the home page to start watching.\n(2) Use the Start Broadcasting button to launch a new feed from OpenTAK ICU, UAS Tool, GoPro, or any advanced source."
+      }
+    },
+    "title": "Onboard to MediaMTX"
+  },
+  "stream": {
+    "address": "Address",
+    "advanced_links": "Advanced Links",
+    "gopro_app": "GoPro App",
+    "opentak_icu": "OpenTak ICU",
+    "passw": "Password",
+    "path": "Path",
+    "port": "Port",
+    "protocol": "Protocol",
+    "rtmps": "RTMPS",
+    "rtmps_with_auth": "RTMPS (with authentication)",
+    "rtsps": "RTSPS",
+    "rtsps_with_auth": "RTSPS (with authentication)",
+    "srt": "SRT",
+    "srt_with_auth": "SRT (with authentication)",
+    "title": "Start a stream",
+    "tools": "Tools",
+    "uastool": "UAS Tool",
+    "username": "Username",
+    "import": {
+      "auto": "Auto import settings to OpenTAK_ICU",
+      "warning": "Requires OpenTAK_ICU version 1.5.4 or newer!",
+      "install": "Download OpenTAK_ICU from GitHub on Android.",
+      "manual": "Or import manually by copying these settings to OpenTAK_ICU settings:"
+    },
+    "uastool_import": "Import settings to UAS Tool",
+    "stream_packages": "Download Stream Packages",
+    "download_atak_rtmps": "ATAK RTMPS",
+    "download_browser_hls": "Browser HLS",
+    "download_vlc_srt": "VLC SRT",
+    "download_vlc_hls": "VLC HLS"
+  },
+  "streams": {
+    "startBroadcasting": "Start Broadcasting",
+    "noStreams": "No streams available",
+    "noStreamsHint": "Start broadcasting to see streams here.",
+    "noSearchResults": "No streams matching '{{query}}'",
+    "clearSearch": "Clear search",
+    "live": "LIVE",
+    "offline": "OFFLINE",
+    "errorLoading": "Could not load streams",
+    "errorLoadingStale": "Stream list may be outdated"
+  },
+  "video": {
+    "backToStreams": "Back to streams",
+    "connectionOptions": "Connection Options",
+    "credentials": "Credentials",
+    "play": "Play stream",
+    "streamNotFound": "Stream not found",
+    "streamNotFoundHint": "This stream may have ended or the URL is incorrect.",
+    "streamOffline": "Stream is offline",
+    "streamOfflineHint": "This stream is not currently broadcasting.",
+    "playbackError": "Playback failed",
+    "playbackErrorHint": "Could not connect to the stream. It may have ended.",
+    "credentialsError": "Could not load credentials",
+    "downloadPackages": "Download Packages",
+    "downloadBrowser": "Browser",
+    "downloadVlc": "VLC",
+    "downloadTak": "TAK",
+    "advancedLinks": "Advanced Links"
+  },
+  "broadcast": {
+    "title": "Start Broadcasting",
+    "selectTool": "Select your broadcasting tool",
+    "opentak_icu": "OpenTAK ICU",
+    "opentak_icu_desc": "Stream from ATAK via OpenTAK ICU",
+    "opentak_icu_step1": "Install OpenTAK ICU application",
+    "opentak_icu_step2": "Use the import button to import settings",
+    "opentak_icu_step3": "Start streaming",
+    "opentak_icu_guide": "OpenTAK ICU Streaming",
+    "opentak_icu_guide_url": "https://docs.pvarki.fi/en/docs/guides/mtx-guide/opentak-icu-xN1NdJaGa8",
+    "gopro": "GoPro",
+    "gopro_desc": "Stream via GoPro",
+    "gopro_step1": "Install GoPro Quik application",
+    "gopro_step2": "Connect GoPro to the application",
+    "gopro_step3": "Use the link to start streaming",
+    "gopro_guide": "GoPro Streaming",
+    "gopro_guide_url": "https://docs.pvarki.fi/en/docs/guides/mtx-guide/gopro-gDG1IhzxmJ",
+    "gopro_appstore_alt": "Download GoPro Quik on the App Store",
+    "gopro_googleplay_alt": "Get GoPro Quik on Google Play",
+    "uastool": "UAS Tool",
+    "uastool_desc": "Stream from ATAK via UAS Tool",
+    "uastool_step1": "Install ATAK and UAS Tool plugin",
+    "uastool_step2": "Use the import button to import settings",
+    "uastool_step3": "Start streaming",
+    "uastool_guide": "UAS Tool Streaming",
+    "uastool_guide_url": "https://docs.pvarki.fi/en/docs/guides/mtx-guide/uas-tool-automatic-method-DwT6M5lj9c",
+    "uastool_googleplay_alt": "Get UAS Tool on Google Play",
+    "advanced": "Advanced",
+    "advanced_desc": "Manual protocol URLs & credentials",
+    "guideHint": "If you need more instructions use the Guide Button",
+    "importSettings": "Import Settings",
+    "guide": "Guide",
+    "guideSteps": {
+      "opentak_icu": {
+        "auto_import": {
+          "title": "Auto importing settings",
+          "description": "OpenTAK ICU will be provided to Android devices after connecting to a TAK server. Use the Import Settings button above to auto-import. After importing you can start streaming."
+        },
+        "manual_settings": {
+          "title": "Opening settings manually",
+          "description": "If auto-import is not available, open OpenTAK ICU and tap the gear icon to open settings."
+        },
+        "streaming_settings": {
+          "title": "Streaming settings",
+          "description": "Navigate to 'Streaming Settings' to configure the streaming parameters."
+        },
+        "copy_values": {
+          "title": "Configure stream values",
+          "description": "Enter the Protocol (RTMPS), Address, Port (1936), Path, Username and Password. These values are shown above in the quick steps."
+        }
+      }
+    }
+  }
+}

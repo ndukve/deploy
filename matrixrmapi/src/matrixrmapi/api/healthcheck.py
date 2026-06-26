@@ -1,0 +1,19 @@
+"""Health-check endpooint(s)"""
+
+import logging
+
+from fastapi import APIRouter
+from libpvarki.schemas.product import ProductHealthCheckResponse
+
+
+LOGGER = logging.getLogger(__name__)
+
+router = APIRouter()
+
+
+@router.get("")
+async def request_healthcheck() -> ProductHealthCheckResponse:
+    """Check that we are healthy, return accordingly"""
+    return ProductHealthCheckResponse(
+        healthy=True, extra="Dummy, nothing actually checked"
+    )

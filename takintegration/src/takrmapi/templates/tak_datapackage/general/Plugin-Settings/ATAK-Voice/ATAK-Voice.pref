@@ -1,0 +1,8 @@
+<?xml version='1.0' standalone='yes'?>
+<preferences>
+  <preference version="1" name="com.atakmap.app.civ_preferences">
+  <entry key="com.atakmap.android.gbr.vx.hostIP" class="class java.lang.String">"SERVER IP/ADDRESS"</entry>
+  <entry key="com.atakmap.android.gbr.vx.hostPassword" class="class java.lang.String">"SERVER PASSWORD"</entry>
+  <entry key="volumemapswitcher" class="class java.lang.Boolean">true</entry>
+  </preference>
+</preferences>

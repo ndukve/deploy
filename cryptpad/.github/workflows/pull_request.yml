@@ -1,0 +1,163 @@
+on:
+  pull_request:
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  version-check-cryptpad:
+    name: Check cryptpad version increment
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pvarki/config-ci-library/.github/actions/validate-bumpversion@main
+        with:
+          version_context: "./docker/cryptpad/"
+
+  version-check-rmcryptpad:
+    name: Check integrationapi version increment
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pvarki/config-ci-library/.github/actions/validate-bumpversion@main
+        with:
+          version_context: "./rmcryptpad/"
+
+  pre-commit:
+    name: Run pre-commit checks
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      checks: write
+    steps:
+      - uses: actions/checkout@v6
+      - name: Set up Python 3.14
+        uses: actions/setup-python@v6
+        with:
+          python-version: 3.14
+      - name: Install deps
+        run: |
+          pip install prek poetry
+          cd rmcryptpad
+          poetry install
+      - name: Do pre-commit checks
+        run: |
+          cd rmcryptpad
+          poetry run prek run --all-files
+
+  test-rmcryptpad-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Install Poetry
+        run: python -m pip install --upgrade pip poetry
+      - name: Install backend dependencies
+        working-directory: rmcryptpad
+        run: poetry install --no-interaction
+      - name: Run backend tests
+        working-directory: rmcryptpad
+        run: poetry run pytest -v
+
+  test-rmcryptpad-ui:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "20"
+          cache: pnpm
+          cache-dependency-path: rmcryptpad/ui/pnpm-lock.yaml
+      - name: Install UI dependencies
+        working-directory: rmcryptpad/ui
+        run: pnpm install --frozen-lockfile
+      - name: Run UI tests
+        working-directory: rmcryptpad/ui
+        run: pnpm test -- --run
+
+  test-cryptpad-image:
+    runs-on: arc-runner-set
+    steps:
+      - uses: actions/checkout@v5
+      - name: Run image smoke test
+        run: sh tests/test_cryptpad_image.sh
+
+  standalone-compose-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Run standalone compose smoke test
+        run: bash tests/test_compose_smoke.sh
+
+  publish-cryptpad:
+    name: Publish cryptpad itself
+    needs:
+      [
+        "version-check-cryptpad",
+        "pre-commit",
+        "standalone-compose-smoke",
+        "test-cryptpad-image",
+      ]
+    runs-on: arc-runner-set
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: recursive
+      - name: Publish Docker image
+        uses: pvarki/config-ci-library/.github/actions/publish-image@main
+        with:
+          product: cryptpad
+          component: server
+          target: runtime
+          context: '.'
+          dockerfile: './docker/cryptpad/Dockerfile'
+          version_context: './docker/cryptpad/'
+          dockerhub-username: ${{ vars.DOCKERHUB_USERNAME }}
+          dockerhub-token: ${{ secrets.DOCKERHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          acr-repo: ${{ vars.ACR_REPO }}
+          acr-username: ${{ vars.ACR_USERNAME }}
+          acr-token: ${{ secrets.ACR_TOKEN }}
+
+
+  publish-rmcryptpad:
+    name: Publish cryptpad RM integration
+    needs:
+      [
+        "version-check-rmcryptpad",
+        "pre-commit",
+        "test-rmcryptpad-backend",
+        "test-rmcryptpad-ui",
+        "standalone-compose-smoke",
+        "test-cryptpad-image",
+      ]
+    runs-on: arc-runner-set
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: recursive
+      - name: Publish Docker image
+        uses: pvarki/config-ci-library/.github/actions/publish-image@main
+        with:
+          product: cryptpad
+          component: integration
+          target: runtime
+          context: '.'
+          dockerfile: './rmcryptpad/Dockerfile'
+          version_context: './rmcryptpad/'
+          dockerhub-username: ${{ vars.DOCKERHUB_USERNAME }}
+          dockerhub-token: ${{ secrets.DOCKERHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          acr-repo: ${{ vars.ACR_REPO }}
+          acr-username: ${{ vars.ACR_USERNAME }}
+          acr-token: ${{ secrets.ACR_TOKEN }}

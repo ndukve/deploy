@@ -1,0 +1,182 @@
+{
+  "features": {
+    "docs": {
+      "steps": {
+        "onword": {
+          "title": "Andra filformat",
+          "description": "Även om CryptPad inte stöder realtidsredigering av t.ex. .docx-filer i webbläsaren kan du dela dem via CryptDrive och redigera dem lokalt."
+        },
+        "collaborate": {
+          "description": "Skriv ett dokument samtidigt med andra.",
+          "title": "Realtidssamarbete"
+        },
+        "create": {
+          "description": "Klicka på '+' i instrumentpanelen och välj 'Rich Text'. Ett nytt krypterat dokument skapas.",
+          "title": "Skapa ett dokument"
+        },
+        "intro": {
+          "description": "CryptPad stöder skapande och redigering av RTF-dokument i realtid direkt i webbläsaren.",
+          "title": "RTF-textdokument"
+        },
+        "share": {
+          "description": "Du kan också diskutera dokumentet direkt i dokumentredigeringsvyn.",
+          "title": "Diskutera dokumentet"
+        }
+      },
+      "title": "Skriv och dela dokument"
+    },
+    "kanban": {
+      "steps": {
+        "create1": {
+          "title": "Skapa en Kanban-tavla",
+          "description": "Klicka på '+' och välj 'Kanban'."
+        },
+        "create2": {
+          "title": "Redigera en Kanban-tavla",
+          "description": "Skapa kolumner för arbetsflödessteg och lägg till kort för uppgifter. Visas här som ett exempel på en uppgiftsuppföljningstavla."
+        },
+        "intro": {
+          "description": "CryptPads Kanban-app är som en lapp- eller whiteboard-tavla. Du kan arrangera uppgifter efter utförandesteg eller underhålla en situationstavla.",
+          "title": "Kanban-uppgiftstavlor"
+        },
+        "manage": {
+          "description": "Klicka på ett kort för att lägga till detaljer. Du kan också lägga till bilder på korten. Dra och släpp kort mellan kolumner för att uppdatera status.",
+          "title": "Hantera uppgiftskort"
+        },
+        "situation": {
+          "title": "Situationstavla",
+          "description": "Kanban-appen kan också användas som situationstavla. Uppdatera din förståelse av enheternas uppdragsläge, uppgift och fiendesituation i kort och dela din lägesbild med ledningscentralen."
+        }
+      },
+      "title": "Uppgiftstavlor (Kanban)"
+    },
+    "presentations": {
+      "steps": {
+        "onword": {
+          "title": "Andra filformat",
+          "description": "Även om CryptPad inte stöder realtidsredigering av t.ex. PowerPoint-filer i webbläsaren kan du dela dem via CryptDrive och redigera och presentera dem lokalt."
+        },
+        "create": {
+          "description": "Klicka på '+' och välj 'Slide'",
+          "title": "Börja skapa en presentation"
+        },
+        "intro": {
+          "description": "CryptPad inkluderar ett Markdown-baserat presentationsverktyg för att snabbt skapa bildspel. Till skillnad från traditionell PowerPoint skriver du din presentation som text och verktyget placerar den i presentationen.",
+          "title": "Skapa presentationer"
+        },
+        "present": {
+          "description": "Skriv dina bilder som text till vänster som visas. Separera bilder med '---'. Klicka på 'Presentera' för att gå in i helskärmsläge. Navigera bilder med piltangenterna.",
+          "title": "Skapa och presentera bilder"
+        }
+      },
+      "title": "Presentationer"
+    },
+    "unitUse": {
+      "steps": {
+        "intro": {
+          "title": "Decentraliserad tjänst",
+          "description": "Denna CryptPad-instans är unik — den finns bara på denna Deploy App-server. All data stannar på din egen infrastruktur och försvinner helt när servern stängs av. En ny server kan startas tom men annars identisk."
+        },
+        "setup": {
+          "title": "Rekommenderad användning — Exempel",
+          "description": "Nedan beskrivs ett enkelt och effektivt sätt att använda CryptPad i ditt team eller enhet. Som den person som ansvarar för ledningssystemet, börja med att skapa ett toppnivåteam i CryptPad."
+        },
+        "setup1": {
+          "title": "Skapa ett team för din enhet (1/8)",
+          "description": "Skapa ett team för din enhet i CryptPad. Detta ger dig enkelt en delad enhet och kalender. Börja med att hitta Team-menyn i det övre högra hörnet."
+        },
+        "setup2": {
+          "title": "Skapa ett team för din enhet (2/8)",
+          "description": "Team-menyn visar CryptPad-team du tillhör. Skapa ett nytt."
+        },
+        "setup3": {
+          "title": "Skapa ett team för din enhet (3/8)",
+          "description": "Ge ditt team ett beskrivande namn och fortsätt."
+        },
+        "setup4": {
+          "title": "Skapa ett team för din enhet (4/8)",
+          "description": "Ditt team är skapat och syns i teammenyn. Fortsätt genom att klicka på ditt teams ikon."
+        },
+        "setup5": {
+          "title": "Skapa ett team för din enhet (5/8)",
+          "description": "Här hittar du ditt teams delade enhet. Navigera sedan till Medlemmar-menyn för att skapa en inbjudan till ditt team."
+        },
+        "setup6": {
+          "title": "Skapa ett team för din enhet (6/8)",
+          "description": "För att låta andra gå med i ditt team, skapa en inbjudningslänk. Bilden visar våra rekommenderade inställningar. Tryck på Skapa länk för att generera en delbar inbjudningslänk."
+        },
+        "setup7": {
+          "title": "Skapa ett team för din enhet (7/8)",
+          "description": "Kopiera länken och dela den via din föredragna meddelandetjänst. Mottagaren måste vara på din enhets Deploy App-server — utan Deploy Apps mTLS-certifikat kan din CryptPad inte nås av säkerhetsskäl."
+        },
+        "setup8": {
+          "title": "Skapa ett team för din enhet (8/8)",
+          "description": "Så här ser den anslutande teammedlemmens vy ut. Efter detta ser de ditt teams delade enhet."
+        },
+        "calender1": {
+          "title": "Delad kalender (1/3)",
+          "description": "Förutom filer och gemensam redigering kan du använda delade kalendrar för teamet. För att göra det, navigera först till Kalendrar-menyn."
+        },
+        "calender2": {
+          "title": "Delad kalender (2/3)",
+          "description": "Skapa en ny kalender och namnge den lämpligt. Välj sedan Dela-menyn."
+        },
+        "calender3": {
+          "title": "Delad kalender (3/3)",
+          "description": "Dela kalendern med teamet. Därefter hittar dina teammedlemmar denna delade kalender i sin egen Kalendrar-meny."
+        },
+        "end": {
+          "title": "Övergång till nästa uppdrag — Säkerhetskopiera dina data",
+          "description": "Från teamets Inställningar-meny kan du enkelt säkerhetskopiera teamets delade CryptDrive. När ditt uppdrag är slut, ta en säkerhetskopia. Du kan ladda upp den till din nästa Deploy App CryptPad-server eller annat system vid behov. Kom ihåg säker datahantering!"
+        }
+      },
+      "title": "CryptPad i enhetens användning"
+    }
+  },
+  "home": {
+    "featuresTitle": "Hur man använder CryptPad",
+    "launch": "Starta CryptPad!",
+    "loginAction": "Logga in på CryptPad",
+    "loginInfo": "Certifikatinloggning som {{callsign}}"
+  },
+  "onboarding": {
+    "back": "Tillbaka",
+    "clickToEnlarge": "Klicka för att förstora",
+    "completion": "Introduktion klar!",
+    "completionDesc": "Du är redo att börja använda CryptPad.",
+    "finish": "Klar",
+    "imageMissing": "Bilden är inte tillgänglig",
+    "next": "Nästa",
+    "of": "av",
+    "progressSaved": "Din introduktionsframsteg har sparats.",
+    "review": "Vad är CryptPad?",
+    "step": "Steg",
+    "steps": {
+      "createDoc": {
+        "description": "Klicka på '+'-knappen på instrumentpanelen för att skapa ett nytt dokument. Välj från textdokument, kodredigerare, kalkylblad, kanban-tavlor, presentationer, whiteboards, formulär och mer. Alla dokument krypteras automatiskt.",
+        "title": "Skapa ditt första dokument"
+      },
+      "dashboard": {
+        "description": "Efter inloggning ser du din CryptPad-instrumentpanel. Härifrån kan du skapa nya dokument, komma åt senaste filer, hantera din CryptDrive och samarbeta med teammedlemmar.",
+        "title": "Din CryptPad-instrumentpanel"
+      },
+      "share": {
+        "description": "Klicka på delningsknappen i verktygsfältet för att dela ett dokument. Du kan dela med specifika teammedlemmar eller skapa en länk. Flera användare kan redigera samtidigt och se varandras ändringar i realtid.",
+        "title": "Dela med ditt team"
+      },
+      "signIn": {
+        "description": "CryptPad är integrerat med Deploy Apps certifikatbaserade autentisering. Klicka bara på 'Logga in på CryptPad' så autentiseras du automatiskt med dina Deploy App-uppgifter. Inget separat konto eller lösenord behövs.",
+        "title": "Logga in med Deploy App"
+      },
+      "welcome": {
+        "description": "CryptPad är en säker, ändtill-ända-krypterad samarbetsplattform. Ditt team kan skapa och gemensamt redigera dokument samt dela filer säkert. Denna Deploy App-server har din enhets egna, decentraliserade CryptPad-tjänst.",
+        "title": "Välkommen till CryptPad!"
+      },
+      "whatIs": {
+        "description": "CryptPad säkerställer att inte ens serveradministratören kan läsa dina filer. Du bestämmer vem du delar med. Även andra användare på denna Deploy App-server behöver en inbjudan från dig för att kunna läsa dina filer.",
+        "title": "Varför är CryptPad säkert?"
+      }
+    },
+    "title": "Vad är CryptPad?"
+  }
+}

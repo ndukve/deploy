@@ -1,0 +1,32 @@
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+# Remember to change KC_VERSION_TAG also in pull_request.yml and .bumpversion.toml
+env:
+  KC_VERSION_TAG: 24.0.5
+
+jobs:
+  build_and_publish:
+    runs-on: arc-runner-set
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publish image
+        uses: pvarki/config-ci-library/.github/actions/publish-image@main
+        with:
+          product: keycloak
+          component: server
+          extra-tag: KC-${{ env.KC_VERSION_TAG }}
+          build-args: |
+            KC_VERSION_TAG=${{ env.KC_VERSION_TAG }}
+          dockerhub-username: ${{ vars.DOCKERHUB_USERNAME }}
+          dockerhub-token: ${{ secrets.DOCKERHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          acr-repo: ${{ vars.ACR_REPO }}
+          acr-username: ${{ vars.ACR_USERNAME }}
+          acr-token: ${{ secrets.ACR_TOKEN }}

@@ -1,0 +1,209 @@
+"""Product registration API views."""
+
+from typing import cast
+import logging
+
+import aiohttp
+from fastapi import APIRouter, Depends, HTTPException, Request, Response
+from libadvian.binpackers import ensure_utf8, ensure_str
+from libpvarki.middleware.mtlsheader import MTLSHeader
+from libpvarki.schemas.generic import OperationResultResponse
+from libpvarki.schemas.product import ReadyRequest
+from libpvarki.schemas.product import UserCRUDRequest
+from multikeyjwt.middleware import JWTBearer
+from cryptography import x509
+from cryptography.x509.oid import NameOID
+
+
+from .schema import CertificatesResponse, CertificatesRequest, RevokeRequest, KCClientToken, ProductAddRequest
+from ....db.nonces import SeenToken
+from ....db.errors import NotFound
+from ....db import Person
+from ....cert.backend import get_ca, get_bundle, sign_csr, revoke_pem, CertError
+from ....rmsettings import RMSettings
+from ....kchelpers import KCClient
+from ....productapihelpers import post_to_product
+from ....mtlsinit import get_session_winit
+from ..middleware.user import ValidUser
+
+router = APIRouter()
+LOGGER = logging.getLogger(__name__)
+
+
+async def csr_common(certs: CertificatesRequest) -> CertificatesResponse:
+    """Common parts of CSR handling"""
+    cachain = await get_ca()
+    certpem = (await sign_csr(certs.csr)).replace("\\n", "\n")
+    bundlepem = await get_bundle(certpem)
+
+    return CertificatesResponse(
+        ca=cachain,
+        certificate=bundlepem,
+    )
+
+
+@router.post("/sign_csr", dependencies=[Depends(JWTBearer(auto_error=True))])
+async def return_ca_and_sign_csr(
+    request: Request,
+    certs: CertificatesRequest,
+) -> CertificatesResponse:
+    """Used by product integration API to request signing of their mTLS client cert"""
+    jwtpayload = request.state.jwt
+    if "csr" not in jwtpayload or not jwtpayload["csr"]:
+        raise HTTPException(403, "JWT does not authorize signing")
+    if "nonce" not in jwtpayload or not jwtpayload["nonce"]:
+        raise HTTPException(403, "JWT does not provide nonce")
+
+    try:
+        # If we can get the token it was used
+        await SeenToken.by_token(jwtpayload["nonce"])
+        raise HTTPException(403, "This token was already used to sign a cert")
+    except NotFound:
+        pass
+
+    # PONDER: Should we check jwtpayload["sub"] is among the products in KRAFTWERK manifest ??
+
+    resp = await csr_common(certs)
+    await SeenToken.use_token(jwtpayload["nonce"])
+    return resp
+
+
+@router.post("/sign_csr/mtls", dependencies=[Depends(MTLSHeader(auto_error=True))])
+async def return_ca_and_sign_csr_mtls(
+    request: Request,
+    certs: CertificatesRequest,
+) -> CertificatesResponse:
+    """Allow product with mTLS cert to request signatures for other certs"""
+    payload = request.state.mtlsdn
+    if payload.get("CN") not in RMSettings.singleton().valid_product_cns:
+        raise HTTPException(status_code=403)
+    return await csr_common(certs)
+
+
+@router.post("/revoke/mtls", dependencies=[Depends(MTLSHeader(auto_error=True))])
+async def revoke_cert(
+    request: Request,
+    cert: RevokeRequest,
+) -> OperationResultResponse:
+    """Allow product with mTLS cert to revoke a cert"""
+    payload = request.state.mtlsdn
+    if payload.get("CN") not in RMSettings.singleton().valid_product_cns:
+        raise HTTPException(status_code=403)
+    try:
+        await revoke_pem(cert.cert, "unspecified")
+        return OperationResultResponse(success=True)
+    except CertError as exc:
+        LOGGER.error("Revoke failed: {}".format(exc))
+        return OperationResultResponse(success=False, error=str(exc))
+
+
+@router.post("/renew_csr", dependencies=[Depends(MTLSHeader(auto_error=True))])
+async def renew_csr(
+    request: Request,
+    certs: CertificatesRequest,
+) -> CertificatesResponse:
+    """Used by product integration API to request renew of their mTLS client cert"""
+    req = x509.load_pem_x509_csr(ensure_utf8(certs.csr))
+    req_cn = req.subject.get_attributes_for_oid(NameOID.COMMON_NAME)[0].value
+    peer_dn = request.state.mtlsdn
+    # Make sure the renew is for same name
+    if ensure_str(req_cn) != ensure_str(peer_dn["CN"]):
+        raise HTTPException(403, "Renewal must be for same name")
+
+    cachain = await get_ca()
+    certpem = (await sign_csr(certs.csr)).replace("\\n", "\n")
+    bundlepem = await get_bundle(certpem)
+
+    return CertificatesResponse(
+        ca=cachain,
+        certificate=bundlepem,
+    )
+
+
+@router.post("/ready", dependencies=[Depends(MTLSHeader(auto_error=True))])
+async def signal_ready(
+    meta: ReadyRequest,
+) -> OperationResultResponse:
+    """Used by product integration API to signify everything is ready in their end"""
+    # FIXME: Actually do something
+    _ = meta
+
+    return OperationResultResponse(success=True, extra="This was actually NO-OP")
+
+
+@router.post("/kctoken", dependencies=[Depends(MTLSHeader(auto_error=True))])
+async def get_kc_token(
+    request: Request,
+) -> KCClientToken:
+    """Get a token to self-register a client for OIDC"""
+    payload = request.state.mtlsdn
+    if payload.get("CN") not in RMSettings.singleton().valid_product_cns:
+        raise HTTPException(status_code=403)
+    if not RMSettings.singleton().kc_enabled:
+        raise HTTPException(403, detail="KC is not enabled")
+    data = await KCClient.singleton().client_access_token()
+    return KCClientToken.parse_obj(data)
+
+
+@router.post("/interop/{tgtproduct}", dependencies=[Depends(MTLSHeader(auto_error=True))])
+async def add_interop(
+    srcproduct: ProductAddRequest,
+    tgtproduct: str,
+    request: Request,
+) -> OperationResultResponse:
+    """Product needs interop privileges with another"""
+    payload = request.state.mtlsdn
+    if payload.get("CN") not in RMSettings.singleton().valid_product_cns:
+        raise HTTPException(status_code=403)
+
+    # TODO: Verify that srcproduct certcn and actual cert contents match
+
+    manifest = RMSettings.singleton().kraftwerk_manifest_dict
+    if "products" not in manifest:
+        LOGGER.error("Manifest does not have products key")
+        raise HTTPException(status_code=500, detail="Manifest does not have products key")
+    if tgtproduct not in manifest["products"]:
+        raise HTTPException(status_code=404, detail=f"Unknown product {tgtproduct}")
+    resp = await post_to_product(tgtproduct, "/api/v1/interop/add", srcproduct.model_dump(), OperationResultResponse)
+    if resp is None:
+        return OperationResultResponse(success=False, error="post_to_product returned None")
+    resp = cast(OperationResultResponse, resp)
+    return resp
+
+
+@router.get("/proxy/{tgtproduct}/{tgtpath:path}", dependencies=[Depends(ValidUser(auto_error=True))])
+async def get_product_proxy(
+    tgtproduct: str,
+    tgtpath: str,
+    request: Request,
+) -> Response:
+    """Proxy request to the product in any path, POSTing the user context"""
+    rmconf = RMSettings.singleton()
+    manifest = rmconf.kraftwerk_manifest_dict
+    person = cast(Person, request.state.person)
+    if tgtproduct not in manifest["products"]:
+        raise HTTPException(status_code=404, detail=f"Unknown product {tgtproduct}")
+    if "api/v1/users" in tgtpath:
+        LOGGER.audit("User {} (pk: {}) tried to access CRUD integration endpoint".format(person.callsign, person.pk))  # type: ignore[attr-defined]
+        raise HTTPException(status_code=403, detail="Accessing CRUD integration endpoints via proxy is forbidden")
+    productconf = manifest["products"][tgtproduct]
+    # We do not read the cert for these because it takes time and is not really needed
+    user = UserCRUDRequest(uuid=str(person.pk), callsign=person.callsign, x509cert="")
+    session = await get_session_winit()
+    session.headers.update(
+        {
+            "X-Rasenmaeher-Proxy": "productproxy",
+            "X-Proxy-Callsign": person.callsign,
+        }
+    )
+    async with session as client:
+        url = f"{productconf['api']}{tgtpath}"
+        LOGGER.debug("calling POST({})".format(url))
+        response = await client.post(
+            url, json=user.model_dump(), timeout=aiohttp.ClientTimeout(total=rmconf.integration_api_timeout * 2)
+        )
+        return Response(
+            status_code=response.status,
+            headers=response.headers,
+            content=await response.read(),
+        )

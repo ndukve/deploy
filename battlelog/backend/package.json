@@ -1,0 +1,51 @@
+{
+  "//version": "!! Use bump-my-version to update version !!",
+  "author": "",
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.62.2",
+    "@opentelemetry/core": "^2.1.0",
+    "@opentelemetry/sdk-metrics": "^2.1.0",
+    "@opentelemetry/sdk-node": "^0.204.0",
+    "@opentelemetry/sdk-trace-node": "^2.1.0",
+    "@redocly/cli": "^2.0.8",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "express-jwt": "^8.4.1",
+    "express-rate-limit": "^8.1.0",
+    "express-session": "^1.18.0",
+    "keycloak-connect": "^26.1.1",
+    "multer": "^2.0.2",
+    "node-pg-migrate": "^8.0.3",
+    "pg": "^8.12.0",
+    "uuid": "^12.0.0",
+    "winston": "^3.17.0"
+  },
+  "description": "",
+  "devDependencies": {
+    "@eslint/js": "^9.19.0",
+    "eslint": "^9.19.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-unicorn": "^61.0.1",
+    "globals": "^16.3.0",
+    "nodemon": "^3.1.4"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "event-tracker",
+  "scripts": {
+    "lint": "eslint .",
+    "migrate:create": "node-pg-migrate create",
+    "migrate:down": "node-pg-migrate down",
+    "migrate:redo": "node-pg-migrate redo",
+    "migrate:up": "node-pg-migrate up",
+    "prettier": "prettier .",
+    "start": "node index.js",
+    "start:instrumented": "node --require ./instrumentation.js index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "version": "1.1.0+260612"
+}

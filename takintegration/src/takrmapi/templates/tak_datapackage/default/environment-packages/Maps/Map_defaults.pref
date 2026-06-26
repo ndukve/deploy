@@ -1,0 +1,10 @@
+<?xml version='1.0' standalone='yes'?>
+<preferences>
+  <preference version="1" name="com.atakmap.app.civ_preferences">
+    <!-- Disable default maps from tak.gov -->
+    <entry key="eud_api_sync_mapsources" class="class java.lang.Boolean">false</entry>
+    <entry key="MobileLayerSelectionAdapter.selected" class="class java.lang.String">4 Google Hybrid</entry>
+    <!-- Better scaling for map clarity -->
+    <entry key="prefs_imagery_relative_scaling" class="class java.lang.Float">0.5</entry>
+  </preference>
+</preferences>

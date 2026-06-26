@@ -1,0 +1,13 @@
+.idea
+.env
+volumes/*
+!volumes/postgres/
+volumes/postgres/*
+!volumes/postgres/.gitkeep
+!volumes/rmcryptpad/
+volumes/rmcryptpad/*
+!volumes/rmcryptpad/.gitkeep
+.worktrees/
+__pycache__/
+*.pyc
+.pytest_cache/

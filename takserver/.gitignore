@@ -1,0 +1,20 @@
+# Secrets — never commit
+.env
+takserver.env
+
+# Generated user packages
+packages/*.zip
+!packages/.gitkeep
+
+# Plugin APKs — licensed, do not redistribute via git
+*.apk
+
+# Service cert output (make add-service)
+certs/
+
+# IDE
+.idea/
+*.iml
+
+# macOS
+.DS_Store

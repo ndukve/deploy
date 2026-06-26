@@ -1,0 +1,430 @@
+{
+  "intro": {
+    "description": "TAK (Team Awareness Kit): En GPS-baserad plattform för spårning av egna styrkor i realtid, delning av observationer och mottagning av lägesuppdateringar.",
+    "title": "TAK"
+  },
+  "loading": {
+    "user_data": "Laddar användardata..."
+  },
+  "onboarding": {
+    "android": {
+      "downloadFromPlayStore": "Ladda ner från Google Play Store",
+      "steps": {
+        "tak-auto-import": {
+          "description": "För att ansluta till servern, tryck på knappen. Kontrollera att ATAK öppnar ett popup-fönster och välj \"Ja\".\n\nOm ATAK inte öppnar ett popup-fönster, försök igen.",
+          "title": "Automatisk import"
+        },
+        "tak-data-sync": {
+          "description": "Du behöver aktivera tillägget Data Sync för att kunna använda ATAK",
+          "title": "Data Sync"
+        },
+        "tak-download": {
+          "description": "Ladda ner ATAK-CIV-appen från Google Play Butik och installera den.",
+          "title": "Ladda ner"
+        },
+        "tak-home": {
+          "description": "I ATAK har du flera alternativ. Använd fliken Meddelanden för att kommunicera med ditt team. Fliken Flöden hjälper dig att följa trafik och händelser i ATAK. Tryck på menyn Verktyg för fler alternativ, inklusive fliken Plugins. Längst ner ser du statusen för din aktuella ATAK.",
+          "title": "ATAK-verktyg"
+        },
+        "tak-manual-import": {
+          "description": "Du kan också importera konfigurationspaketet manuellt.",
+          "title": "Manuell import"
+        },
+        "tak-plugins": {
+          "description": "I menyn Verktyg hittar du fliken Plugins.",
+          "title": "ATAK-plugins (tillägg)"
+        },
+        "tak-welcome": {
+          "description": "Välkommen till installationen av ATAK",
+          "title": "Välkommen"
+        }
+      }
+    },
+    "back": "Bakåt",
+    "clickToEnlarge": "Klicka för att förstora",
+    "completion": "Onboarding slutförd!",
+    "completionDesc": "Du är nu redo att arbeta med full kapacitet.",
+    "finish": "Slutför",
+    "general": {
+      "steps": {
+        "install": {
+          "description": "Kom ihåg att välja den plattform du använder (1) om den inte upptäcks automatiskt. När du har laddat ner ditt paket (2) och importerat det är du redo att köra!",
+          "title": "Nedladdning av paket"
+        },
+        "return": {
+          "description": "Du kan alltid öppna den här guiden igen genom att trycka på knappen i det nedre högra hörnet.",
+          "title": "Öppna guide"
+        },
+        "welcome": {
+          "description": "Välkommen till TAK!",
+          "title": "Välkommen"
+        }
+      }
+    },
+    "imageMissing": "Bild saknas",
+    "ios": {
+      "downloadFromAppStore": "Ladda ner från App Store",
+      "steps": {
+        "itak-import": {
+          "description": "Öppna menyn \"Packages\" och lägg till ett nytt paket från din lokala enhet. Välj filen som du laddade ned tidigare.",
+          "title": "Importera paketet"
+        },
+        "itak-settings": {
+          "description": "Inställningar nås från det övre högra hörnet. Där kan du ändra karta och preferenser. Rekommenderas: Ändra enheter i inställningarna till att använda MGRS och metriska enheter.",
+          "title": "Ändra inställningar"
+        },
+        "itak-setup": {
+          "description": "Öppna iTAK. När du tillfrågas om tillåtelse att komma åt enheter i lokala nätverk, välj 'tillåt inte'. TILLÅT alla andra behörigheter. Du bör ställa in din anropssignal (callsign) så att den matchar den i Deploy App.",
+          "title": "Konfigurera iTAK"
+        },
+        "itak-sync1": {
+          "description": "Öppna menyn \"Data Sync\" och prenumerera på \"RECON\"-flödet.",
+          "title": "Data Sync (1/2)"
+        },
+        "itak-sync2": {
+          "description": "Gå tillbaka till menyn \"Data Sync\" och gör en fullständig synkronisering.",
+          "title": "Data Sync (2/2)"
+        },
+        "tak-download": {
+          "description": "Ladda ner iTAK-appen från App Store och installera den:",
+          "title": "Ladda ner"
+        },
+        "tak-package": {
+          "description": "Kontrollera att din plattform är rätt inställd. Ladda därefter ner ditt klientpaket.",
+          "title": "Nedladdning av paket"
+        },
+        "welcome": {
+          "description": "Välkommen till iTAK-installationen",
+          "title": "Välkommen"
+        }
+      }
+    },
+    "next": "Next",
+    "of": "av",
+    "progressSaved": "Your onboarding progress has been saved.",
+    "review": "Review onboarding",
+    "step": "Steg",
+    "title": "Onboard to TAK",
+    "windows": {
+      "back": "Back",
+      "clickToEnlarge": "Click to enlarge",
+      "completion": "Onboarding Completed!",
+      "completionDesc": "You're all set and ready to operate at full capacity.",
+      "finish": "Finish",
+      "imageMissing": "Image not available",
+      "next": "Next",
+      "of": "of",
+      "progressSaved": "Your onboarding progress has been saved.",
+      "review": "Review onboarding",
+      "step": "Step",
+      "steps": {
+        "health": {
+          "description": "See how everything's running at a glance. Check if your systems are healthy and your network is connected.",
+          "title": "System Status"
+        },
+        "instructions": {
+          "description": "Need help getting started? Find step-by-step guides and tips for making the most of Modular Apps.",
+          "title": "Help & Guides"
+        },
+        "invite": {
+          "description": "Bring new people onto your team with secure invite codes or QR codes. Share them however works best for you.",
+          "title": "Invite People"
+        },
+        "products": {
+          "description": "Launch the Team Awareness Kit and other apps you need. Everything's ready to go when you are.",
+          "title": "Your Apps"
+        },
+        "users": {
+          "description": "See who's on your team, approve new members, and manage everyone's access. Keep things secure and organized.",
+          "title": "Team Members"
+        },
+        "welcome": {
+          "description": "This is your home base for managing everything. Launch apps, check system status, and keep your team organized—all in one place.",
+          "title": "Welcome!"
+        }
+      },
+      "title": "Onboard to Deploy App"
+    },
+    "wintak": {
+      "description": "Välj den plattform du använder (1) om den inte detekteras korrekt. Ladda ner ditt paket (2). Läs instruktionerna för hur du importerar ditt paket (3)."
+    }
+  },
+  "platform": {
+    "android": "ATAK",
+    "choose": "Välj plattform",
+    "ios": "iTAK",
+    "select_placeholder": "Välj plattform",
+    "tracker": "TAK Tracker",
+    "windows": "WinTAK"
+  },
+  "tabs": {
+    "android": {
+      "instructions_short": "Behöver du hjälp med att importera paketet?",
+      "open_atak": "ATAK: Importera paketet automatiskt",
+      "open_atak_dialog": {
+        "description": "Klicka på knappen nedan för att öppna i ATAK",
+        "note": "När ATAK öppnas och frågar om import av ett paket med en lång länk, välj \"Yes\"",
+        "open": "Öppna ATAK och anslut till tjänsten",
+        "title": "Automatisk import av ATAK-uppdragspaket"
+      },
+      "open_atak_manual_note": "Eller importera paketet manuellt",
+      "open_instructions": "Öppna instruktioner",
+      "phase1": {
+        "step1_desc_civ": "Ladda ner appen ATAK-CIV från Play Store och installera den:",
+        "step1_desc_sync": "Ladda ner ATAK Data Sync-pluginet och installera det:",
+        "step1_title": "Ladda ner applikationerna",
+        "step2_desc_error": "Om applikationen ger ett felmeddelande, välj \"Wait\" (Vänta).",
+        "step2_desc_permissions": "Öppna appen och bevilja alla begärda behörigheter.",
+        "step2_title": "Öppna ATAK-appen och ge behörigheter"
+      },
+      "phase2": {
+        "step1_desc_1": "När du öppnar TAK-appen för första gången visas TAK Device Setup.",
+        "step1_desc_2": "Välj <bold>Data Package</bold> (Datapaket) för att fortsätta.",
+        "step1_desc_3": "Menyn för att välja datapaket öppnas.",
+        "step1_title": "1. Öppna menyn Select Data Package",
+        "step2_desc_1": "Leta reda på mappen där du laddade ner din klientpaketfil <bold>'Namn.zip'</bold>.",
+        "step2_desc_2": "Tips: Tryck på <bold>Date</bold> (Datum) för att se den senast nedladdade filen, troligen ditt klientpaket.",
+        "step2_desc_3": "Välj filen för att fortsätta.",
+        "step2_title": "2. Hitta och välj zip-filen",
+        "step3_desc_1": "Tryck på <bold>Done</bold> (Klar).",
+        "step3_desc_2": "Du kommer att få flera notiser om att konfigurationsfiler laddas.",
+        "step3_desc_3": "Den initiala konfigurationen är klar.",
+        "step3_desc_4": "Kontrollera det nedre högra hörnet för att bekräfta att din serveranslutning är aktiv (grön lampa).",
+        "step3_title": "3. Tryck på Done - inställningar laddas"
+      },
+      "phase3": {
+        "step1_desc_1": "Tryck på de tre linjerna (hamburgermenyn) i det övre högra hörnet.",
+        "step1_desc_2": "Skrolla till botten av menyn och välj <bold>Settings</bold> (Inställningar).",
+        "step1_title": "1. Öppna Inställningar",
+        "step2_desc_1": "Välj <bold>My Team</bold> (Mitt team) och välj den färg du instruerats att använda.",
+        "step2_desc_2": "Välj <bold>My Role</bold> (Min roll). Om inte annat anges av dina överordnade bör alla användare på ledningsplats använda rollen <bold>Team Member</bold> (Teammedlem).",
+        "step2_desc_3": "Din roll och ditt team är nu inställda.",
+        "step2_title": "2. Ställ in Team och Roll"
+      },
+      "phase4": {
+        "step1_desc_1": "a. Öppna hamburgermenyn i huvudvyn och hitta <bold>Plugins</bold> (Tillägg). (Du måste ha Data Sync-pluginet installerat från Google Play.)",
+        "step1_desc_2": "b. Plugins-menyn öppnas. Tryck på raden för <bold>Data Sync</bold> där det står <bold>\"Status: Not loaded.\"</bold>",
+        "step1_desc_3": "c. Appen frågar om du vill ladda Data Sync. Tryck på <bold>Load</bold> (Ladda).",
+        "step1_desc_4": "d. Statusen för Data Sync ändras till <bold>Loaded</bold> (Laddad).",
+        "step1_desc_5": "Klart! Du kan stänga menyn.",
+        "step1_title": "1. Öppna Data Sync-menyn",
+        "step2_desc_1": "Öppna hamburgermenyn i huvudvyn och välj <bold>Data Sync</bold>.",
+        "step2_desc_2": "När du öppnar Data Sync-menyn visas tillgängliga flöden från servern.",
+        "step2_desc_3": "Välj det/de flöde(n) du instruerats att prenumerera på (exempel: <bold>RECON</bold>).",
+        "step2_desc_4": "Välj <bold>Download & Sync</bold> (Ladda ner & Synkronisera) från popup-fönstret.",
+        "step2_desc_5": "Spaningsflödet (Recon Feed) är nu aktiverat. Du kommer att få markörer på din karta från ledningsplatsen.",
+        "step2_title": "2. Aktivera Spaningsflöde & andra flöden",
+        "step3_desc_1": "Se till att <bold>Auto Download</bold> är på. Återgå till huvudvyn och öppna hamburgermenyn.",
+        "step3_desc_2": "Hitta <bold>Settings</bold> (Inställningar).",
+        "step3_desc_3": "Hitta inställningen <bold>Auto Download Updates</bold> och se till att den är påslagen.",
+        "step3_desc_4": "Detta säkerställer att ATAK automatiskt laddar ner uppdateringar för dina prenumererade flöden.",
+        "step3_title": "3. Slå på automatisk nedladdning"
+      },
+      "phase5": {
+        "step1_desc_1": "För att välja en kartbas, öppna <bold>Maps</bold> (Kartor) från verktygsfältet (övre högra hörnet).",
+        "step1_desc_2": "Bekräfta eventuella notiser genom att trycka på <bold>OK</bold>.",
+        "step1_desc_3": "Välj fliken <bold>Mobile</bold> och aktivera kartbasen <bold>02 Google Hybrid</bold>.",
+        "step1_desc_4": "Stäng menyn genom att trycka på <bold>Back</bold> (Tillbaka) några gånger.",
+        "step1_title": "1. Välj önskad kartbas",
+        "step2_desc_1": "I ATAK är enhetsinställningar vanligtvis förkonfigurerade av ditt installerade klientpaket. Kontrollera eller justera dem enligt följande:",
+        "step2_desc_2_1": "Återgå till huvudmenyn <bold>Settings</bold> (Inställningar).",
+        "step2_desc_2_2": "Välj <italic>Display Preferences</italic> (Skärminställningar).",
+        "step2_desc_2_3": "Välj <italic>Basic Display Preferences</italic> (Grundläggande skärminställningar).",
+        "step2_desc_2_4": "Välj <italic>Unit Display Format Preferences</italic> (Enhetsformat).",
+        "step2_desc_2_5": "Välj <bold>Altitude Units</bold> (Höjdenheter) och ställ in på <bold>Meters (m)</bold>.",
+        "step2_desc_2_6": "Välj <bold>Speed Units</bold> (Hastighetsenheter) och välj <bold>KM per Hour (kmph)</bold>.",
+        "step2_desc_2_7": "Skrolla till <bold>UNIT THRESHOLD</bold>, välj <bold>Meters to Kilometers</bold>, ställ in på <bold>1000</bold>, och tryck på <bold>OK</bold>.",
+        "step2_desc_3": "Enheter är nu inställda. Stäng menyn genom att trycka på tillbaka-knappen flera gånger.",
+        "step2_title": "2. Kontrollera enheter vid behov",
+        "step3_desc_1": "Din anropssignal är vanligtvis inställd av ditt installerade klientpaket. För att ändra den:",
+        "step3_desc_2_1": "Välj <bold>Callsign and Device Preferences</bold> (Anropssignal och enhetsinställningar).",
+        "step3_desc_2_2": "Välj <bold>Callsign Preferences</bold> (Inställningar för anropssignal).",
+        "step3_desc_2_3": "Välj <bold>My Callsign</bold> (Min anropssignal).",
+        "step3_desc_2_4": "Ange din tilldelade anropssignal (exempel: <bold>Rambo</bold>).",
+        "step3_desc_2_5": "Tryck på <bold>OK</bold>.",
+        "step3_title": "3. Kontrollera och ändra anropssignal vid behov"
+      },
+      "step1_download": "Ladda ner zip-paketet:",
+      "step2_install": "Importera paketet till appen.",
+      "step3_done": "ATAK är redo att användas.",
+      "title": "Installation av ATAK-paket",
+      "wizard_title": {
+        "phase1": "Installera Android-appar",
+        "phase2": "Importera datapaket",
+        "phase3": "Justera inställningar",
+        "phase4": "Data Sync",
+        "phase5": "Slutför installation"
+      }
+    },
+    "ios": {
+      "instructions_short": "Behöver du hjälp med att importera paketet?",
+      "open_instructions": "Öppna instruktioner",
+      "phase1": {
+        "download_client_package": "Ladda ner ditt klientpaket",
+        "step1_desc_1": "Ladda ner iTAK-appen från App Store och installera den.",
+        "step1_desc_2": "Tryck på knappen nedan för att hämta appen.",
+        "step1_desc_title": "Ladda ner iTAK",
+        "step1_title": "1. Ladda ner applikationerna",
+        "step2_desc_1": "Ladda ner ditt klientpaket genom att trycka på den gröna knappen nedan.",
+        "step2_desc_2": "Du kan även hitta samma knapp på framsidan.",
+        "step2_desc_title": "Ladda ner ditt klientpaket",
+        "step2_title": "2. Ladda ner ditt klientpaket",
+        "zip_file_warning": "OBS! Zip-filen behöver inte extraheras!"
+      },
+      "phase2": {
+        "step1_desc_1": "Öppna iTAK-appen.",
+        "step1_desc_2": "När appen frågar: \"iTAK vill hitta och ansluta till enheter på ditt lokala nätverk...\", välj Inte tillåt.",
+        "step1_title": "Starta applikationen",
+        "step2_desc_1": "Fyll i profilinställningarna:",
+        "step2_desc_2": "Ange ditt alias i fältet Callsign, till exempel, Rambo. Fyll inte i telefonfältet. Tryck sedan på Nästa.",
+        "step2_title": "Ange ditt callsign",
+        "step3_desc_1": "Fyll i teaminställningarna:",
+        "step3_desc_2": "I fältet Välj team, välj din teams färg från rullgardinsmenyn (som du bör ha blivit instruerad att välja). I fältet Välj teamroll, välj rollen Teammedlem, om inte annat instruerats.\nAnvändare av kommandopost kommer att sätta sin roll till HQ.\nTryck sedan på Nästa.",
+        "step3_title": "Ställ in teaminställningar",
+        "step4_desc_1": "a. Ställ in integritetsinställningarna för att tillåta aviseringar och platsinformation.",
+        "step4_desc_2": "iOS kommer sedan att fråga om du tillåter iTAK att skicka aviseringar och använda din plats. Välj Tillåt för aviseringar.",
+        "step4_desc_3": "Välj Tillåt medan appen används för platsinformation.",
+        "step4_desc_4": "Efter detta, gå vidare för att etablera serveranslutningen med ditt klientpaket.",
+        "step4_title": "Ge appen de nödvändiga behörigheterna"
+      },
+      "phase3": {
+        "step1_desc_1": "a. Gå till kartvyn och scrolla verktygsfältet åt höger tills du hittar Paketikonen.",
+        "step1_important": "Viktigt! Försök inte installera klientpaketet via iTAK Inställningar->Nätverk->Server!. Det kommer inte att fungera.",
+        "step1_title": "Öppna Pakethanteraren",
+        "step2_desc_1": "b. Pakethanteraren öppnas, den kommer att vara tom. Tryck på plusikonen längst ner till höger för att lägga till ditt meddelandemallpaket.",
+        "step2_desc_2": "c. Välj Lokal enhet.",
+        "step2_desc_3": "d. Välj ditt paket. Det kommer att vara en zip-fil som heter DittCallsign.zip.",
+        "step2_desc_4": "e. Som en bekräftelse på att det lyckades, kommer listan i Pakethanteraren att visa serverns callsign och ett grönt ljus. Återgå till kartvyn.",
+        "step2_desc_5": "Serveranslutningen är nu etablerad. Som en bekräftelse kommer längst ner till höger på kartan att visas grönt \"Ansluten\".",
+        "step2_title": "Lägg till ditt meddelandemallpaket till iTAK"
+      },
+      "phase4": {
+        "step1_desc_1": "a. Öppna inställningar igen från kugghjulsikonen uppe till vänster.",
+        "step1_desc_2": "b. Välj Preferenser från huvudinställningsmenyn.",
+        "step1_desc_3": "Förbered för att ställa in korrekta måttenheter och koordinatsystem.",
+        "step1_title": "Öppna inställningar",
+        "step2_desc_1": "Välj Enheter:",
+        "step2_desc_2": "Välj MGRS för koordinatformat och Meter för avståndsformat.",
+        "step2_title": "Ställ in enheter",
+        "step3_desc_1": "a. Om du vill ändra kartkälla, välj Kartkälla från huvudinställningsmenyn.",
+        "step3_desc_2": "b. Välj den kartkälla du önskar. Observera! Tillgänglighet kan variera.",
+        "step3_desc_3": "Bra! Du har nu ställt in iTAK för användning.\nOm du behöver redigera ditt callsign kan du göra det från inställningsmenyn genom att klicka på ditt callsign.",
+        "step3_title": "Ändra eventuellt kartkälla"
+      },
+      "phase5": {
+        "step1_desc_1": "I huvudvyn, öppna verktygsmenyn (längst ner) och scrolla till höger för att hitta Data Synkronisering-menyn.",
+        "step1_title": "Öppna Data Synkronisering-menyn",
+        "step2_desc_1": "I Data Synkronisering-menyn, tryck på Prenumerera-knappen.",
+        "step2_desc_2": "Välj den tillgängliga servern (namnet på din insats bör dyka upp, t.ex. 'positive-beetle.').",
+        "step2_desc_3": "I den kommande vyn, välj RECON-flödet och eventuellt något annat flöde du blivit instruerad att prenumerera på.",
+        "step2_title": "Prenumerera på flödet",
+        "step3_desc_1": "Från och med nu är Recon-flödet, som skapats och uppdaterats av användarna på kommandoposten, tillgängligt för dig.",
+        "step3_desc_2": "Flödet kommer att visas i din Data Synkronisering-meny. Instruktioner för att använda flödet finns i gruppinstruktionerna.",
+        "step3_title": "Flödet är tillgängligt"
+      },
+      "step1_download": "Ladda ner zip-paketet:",
+      "step2_install": "Importera paketet.",
+      "step3_done": "Klart, iTAK är redo att användas.",
+      "title": "iTAK Paketinstallation",
+      "wizard_title": {
+        "phase1": "Installera iOS-appar",
+        "phase2": "Gör de grundläggande inställningarna",
+        "phase3": "Anslut till servern",
+        "phase4": "Ställ in enheter",
+        "phase5": "Aktivera Data Synkronisering"
+      }
+    },
+    "tracker": {
+      "step1_download": "Ladda ner zip-paketet:",
+      "step2_install": "Importera paketet.",
+      "step3_done": "Klart, TAK Tracker är redo att användas.",
+      "title": "TAK Tracker Paketinstallation"
+    },
+    "windows": {
+      "instructions_short": "Behöver du hjälp med att importera paketet?",
+      "open_instructions": "Öppna instruktioner",
+      "phase1": {
+        "step1_desc_1": "WinTAK kräver att arbetsstationens språk är engelska och regioninställningen är USA.",
+        "step1_desc_2": "Innan du installerar applikationen, sök efter Tid och Språk från sökfältet (nere till vänster).",
+        "step1_desc_3": "Först, låt oss ändra regioninställningen. Välj Region från sidomenyn i Tid och Språk.",
+        "step1_desc_4": "Välj USA för land eller region. Se till att regionalformatet också är inställt på Engelska (USA).",
+        "step1_title": "1. Ställ in din region till USA",
+        "step2_desc_1": "Från sidomenyn i Tid och Språk-menyn, välj Språk.",
+        "step2_desc_2": "Ställ in Windows visningsspråk till Engelska (USA).",
+        "step2_desc_3": "Slutför ändringen av visningsspråket genom att logga ut och logga in igen.",
+        "step2_title": "2. Ställ in språk till Engelska (US)",
+        "step3_desc_1": "Om engelska inte finns tillgängligt i visningsspråkalternativen, tryck på Lägg till ett språk och sök efter det.",
+        "step3_desc_2": "Tryck på Installera språkpaket. Vänta på att språkpaketet installeras.",
+        "step3_desc_3": "Därefter kan du välja Engelska som visningsspråk enligt steg 2.",
+        "step3_desc_4": "Språkinställningarna är nu klara.",
+        "step3_title": "3. Om nödvändigt, lägg till språkpaket (Engelska)"
+      },
+      "phase2": {
+        "step1_desc_1": "Ladda ner WinTAK-applikationen från Försvarsmaktens angivna plats.",
+        "step1_desc_2": "Viktigt! Ladda bara ner Windows-applikationer från den angivna platsen.",
+        "step1_title": "1. Ladda ner WinTAK",
+        "step3_desc_1": "Hitta den nedladdade zip-filen och extrahera den. Lokalisera .msi installationsfilen i zip:ens Produkter-mapp.",
+        "step3_desc_2": "Dubbelklicka på .msi-filen för att öppna installationsprogrammet.",
+        "step3_title": "2. Öppna Installationsprogrammet",
+        "step4_desc_1": "Installera WinTAK med Hjälpmedelsguiden.",
+        "step4_desc_2": "Tryck på Nästa. Välj installationsmapp för applikationen.",
+        "step4_desc_3": "Valfritt, ändra installationsmappen via knappen Bläddra. Tryck på Nästa.",
+        "step4_desc_4": "Välj komponenter som ska installeras i Hjälpmedelsguiden. Välj åtminstone följande komponent: Data Synk.",
+        "step4_desc_5": "Tryck på Nästa. Guiden är redo att börja installationen, tryck på Installera.",
+        "step4_title": "3. Installera med Installationsprogrammet"
+      },
+      "phase3": {
+        "step1_desc": "Öppna WinTAK-applikationen från skrivbordet.",
+        "step1_title": "1. Öppna applikationen",
+        "step2_desc_1": "Efter en stund kommer Enhetsinställningsguiden att öppnas.",
+        "step2_desc_2": "Som första steg, acceptera EULA.",
+        "step2_title": "2. Acceptera EULA",
+        "step3_desc_1": "Nästa, etablera serveranslutning.",
+        "step3_desc_2": "a. Applikationen kommer att fråga om du vill importera ett datapaket.",
+        "step3_desc_3": "b. Välj 'Ja'. Peka på Klientpaketet.",
+        "step3_desc_4": "När du har valt paketet och tryckt på Öppna, kommer fönstret Välj importstrategi att öppnas.",
+        "step3_desc_5": "c. Välj 'UserPreferenceImportStrategy', och tryck på OK.",
+        "step3_title": "3. Etablera serveranslutning",
+        "step4_desc_1": "Med meddelandepaketet kan olika kartbakgrunder komma.",
+        "step4_title": "4. Välj kartbakgrund",
+        "step5_desc_1": "Enhetsinställningsguiden kommer att fråga om du vill definiera ditt callsign.",
+        "step5_desc_2": "Dessa behövs inte, rensa rutorna och tryck på OK.",
+        "step5_title": "5. Ställ in callsign",
+        "step6_desc_1": "Applikationen kommer att fråga om plugins ska installeras.",
+        "step6_desc_2": "Nästa, kommer applikationen att fråga om DTED-0 höjdsmodeller ska laddas ner automatiskt.",
+        "step6_title": "6. Ställ in Plugins",
+        "step7_desc_1": "Nu har WinTAK:s grundläggande inställningar gjorts. Låt oss kontrollera 'Mina preferenser'.",
+        "step7_desc_2": "Kontrollera även TAK-nätverksstatusen. En grön moln betyder att serveranslutningen är OK, röd betyder att den är frånkopplad.",
+        "step7_title": "7. Granska inställningar"
+      },
+      "phase4": {
+        "step1_desc_1": "Kontrollera WinTAK:s enhetsinställningar.",
+        "step1_desc_2": "Tryck på de tre staplade linjerna, hamburger-menyn, i det övre vänstra hörnet.",
+        "step1_desc_3": "Välj Inställningar.",
+        "step1_desc_4": "Välj Visningspreferenser.",
+        "step1_desc_5": "Visningspreferenser-menyn öppnas. Välj Enhetsvisningsformat.",
+        "step1_desc_6": "Kontrollera att inställningarna är som visas på bilden. Ändra om det behövs.",
+        "step1_title": "1. Kontrollera enhetsinställningar",
+        "step2_desc": "TBD: Felsökning.",
+        "step2_title": "2. Felsökning"
+      },
+      "step1_download": "Ladda ner zip-paketet:",
+      "step1_note": "WinTAK använder samma paket som ATAK",
+      "step2_install": "Importera paketet.",
+      "step3_done": "Klart, WinTAK är redo att användas.",
+      "title": "WinTAK Paketinstallation",
+      "wizard_title": {
+        "phase1": "Ställ in Windows PC:s språk till engelska",
+        "phase2": "Ladda ner och installera WinTAK",
+        "phase3": "Konfigurera WinTAK",
+        "phase4": "Ställ in måttenheter"
+      }
+    }
+  },
+  "wizard": {
+    "complete": "Klar",
+    "next": "Nästa",
+    "previous": "Föregående",
+    "step_counter": "Steg {{current}} av {{total}}"
+  }
+}

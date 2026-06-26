@@ -1,0 +1,894 @@
+{
+  "components": {},
+  "info": {
+    "description": "The public API of the Battle Log backend",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    "title": "Battle Log OpenAPI Specification",
+    "version": "1.0.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/api/event/:param2": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "in": "query",
+            "name": ":param2--not-actually-used-fill-in-real-query-parameters",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "admiralty_accuracy": {
+                      "type": "string"
+                    },
+                    "admiralty_reliability": {
+                      "type": "string"
+                    },
+                    "author": {
+                      "type": "string"
+                    },
+                    "creation_time": {
+                      "type": "string"
+                    },
+                    "event_time": {
+                      "type": "string"
+                    },
+                    "hcoe_domains": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "header": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "images": {
+                      "type": "array"
+                    },
+                    "keywords": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "link": {
+                      "type": "string"
+                    },
+                    "location": {
+                      "type": "string"
+                    },
+                    "location_lat": {
+                      "type": "integer"
+                    },
+                    "location_lng": {
+                      "type": "integer"
+                    },
+                    "notes": {
+                      "type": "string"
+                    },
+                    "source": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "header",
+                    "link",
+                    "source",
+                    "admiralty_reliability",
+                    "admiralty_accuracy",
+                    "keywords",
+                    "event_time",
+                    "creation_time",
+                    "notes",
+                    "hcoe_domains",
+                    "location",
+                    "location_lng",
+                    "location_lat",
+                    "author",
+                    "images"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [],
+        "summary": "/api/event/"
+      }
+    },
+    "/api/events": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "admiralty_accuracy": {
+                        "type": "string"
+                      },
+                      "admiralty_reliability": {
+                        "type": "string"
+                      },
+                      "author": {
+                        "type": [
+                          "string",
+                          "string"
+                        ]
+                      },
+                      "creation_time": {
+                        "type": "string"
+                      },
+                      "event_time": {
+                        "type": "string"
+                      },
+                      "hcoe_domains": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          }
+                        ]
+                      },
+                      "header": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "keywords": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "link": {
+                        "type": "string"
+                      },
+                      "location": {
+                        "type": [
+                          "string"
+                        ]
+                      },
+                      "location_lat": {
+                        "type": [
+                          "string",
+                          "number"
+                        ]
+                      },
+                      "location_lng": {
+                        "type": [
+                          "string",
+                          "number"
+                        ]
+                      },
+                      "notes": {
+                        "type": "string"
+                      },
+                      "source": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "header",
+                      "link",
+                      "source",
+                      "admiralty_reliability",
+                      "admiralty_accuracy",
+                      "keywords",
+                      "event_time",
+                      "creation_time",
+                      "notes",
+                      "hcoe_domains",
+                      "location",
+                      "location_lng",
+                      "location_lat",
+                      "author"
+                    ],
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [],
+        "summary": "/api/events"
+      },
+      "post": {
+        "description": "",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "events": {
+                    "items": {
+                      "properties": {
+                        "admiralty_accuracy": {
+                          "type": "string"
+                        },
+                        "admiralty_reliability": {
+                          "type": "string"
+                        },
+                        "author": {
+                          "type": "string"
+                        },
+                        "event_time": {
+                          "type": "string"
+                        },
+                        "hcoe_domains": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "header": {
+                          "type": "string"
+                        },
+                        "keywords": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "link": {
+                          "type": "string"
+                        },
+                        "location": {
+                          "type": "string"
+                        },
+                        "location_lat": {
+                          "type": "string"
+                        },
+                        "location_lng": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "header",
+                        "link",
+                        "source",
+                        "admiralty_reliability",
+                        "admiralty_accuracy",
+                        "event_time",
+                        "keywords",
+                        "hcoe_domains",
+                        "location",
+                        "author",
+                        "location_lat",
+                        "location_lng"
+                      ],
+                      "type": "object"
+                    },
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "events"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [],
+        "summary": "/api/events"
+      }
+    },
+    "/api/events/trending/day": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "events": {
+                      "items": {
+                        "properties": {
+                          "admiralty_accuracy": {
+                            "type": "string"
+                          },
+                          "admiralty_reliability": {
+                            "type": "string"
+                          },
+                          "author": {
+                            "type": "string"
+                          },
+                          "creation_time": {
+                            "type": "string"
+                          },
+                          "event_time": {
+                            "type": "string"
+                          },
+                          "hcoe_domains": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "header": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "keywords": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "link": {
+                            "type": "string"
+                          },
+                          "location": {
+                            "type": "string"
+                          },
+                          "location_lat": {
+                            "type": "integer"
+                          },
+                          "location_lng": {
+                            "type": "integer"
+                          },
+                          "notes": {
+                            "type": "string"
+                          },
+                          "source": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "header",
+                          "link",
+                          "source",
+                          "admiralty_reliability",
+                          "admiralty_accuracy",
+                          "keywords",
+                          "event_time",
+                          "creation_time",
+                          "notes",
+                          "hcoe_domains",
+                          "location",
+                          "location_lng",
+                          "location_lat",
+                          "author"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "number_of_tags": {
+                      "type": "integer"
+                    },
+                    "precentage_of_tags": {
+                      "type": "string"
+                    },
+                    "trending_tag": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "trending_tag",
+                    "precentage_of_tags",
+                    "number_of_tags",
+                    "events"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [],
+        "summary": "/api/events/trending/day"
+      }
+    },
+    "/api/events/trending/week": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "events": {
+                      "items": {
+                        "properties": {
+                          "admiralty_accuracy": {
+                            "type": "string"
+                          },
+                          "admiralty_reliability": {
+                            "type": "string"
+                          },
+                          "author": {
+                            "type": "string"
+                          },
+                          "creation_time": {
+                            "type": "string"
+                          },
+                          "event_time": {
+                            "type": "string"
+                          },
+                          "hcoe_domains": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "header": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "keywords": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "link": {
+                            "type": "string"
+                          },
+                          "location": {
+                            "type": "string"
+                          },
+                          "location_lat": {
+                            "type": "integer"
+                          },
+                          "location_lng": {
+                            "type": "integer"
+                          },
+                          "notes": {
+                            "type": "string"
+                          },
+                          "source": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "header",
+                          "link",
+                          "source",
+                          "admiralty_reliability",
+                          "admiralty_accuracy",
+                          "keywords",
+                          "event_time",
+                          "creation_time",
+                          "notes",
+                          "hcoe_domains",
+                          "location",
+                          "location_lng",
+                          "location_lat",
+                          "author"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "number_of_tags": {
+                      "type": "integer"
+                    },
+                    "precentage_of_tags": {
+                      "type": "string"
+                    },
+                    "trending_tag": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "trending_tag",
+                    "precentage_of_tags",
+                    "number_of_tags",
+                    "events"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [],
+        "summary": "/api/events/trending/week"
+      }
+    },
+    "/api/groups": {
+      "get": {
+        "security": [],
+        "summary": "Get list of existing groups"
+      },
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "eventIds": {
+                    "description": "Array of PostgreSQL-compatible UUID identifiers",
+                    "example": [
+                      "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
+                      "550e8400-e29b-41d4-a716-446655440000"
+                    ],
+                    "items": {
+                      "format": "uuid",
+                      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+                      "type": "string"
+                    },
+                    "maxItems": 100,
+                    "minItems": 1,
+                    "type": "array",
+                    "uniqueItems": true
+                  },
+                  "groupName": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [],
+        "summary": "Create a new group"
+      }
+    },
+    "/api/groups/{groupName}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "groupName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "eventCount": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "eventCount"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Create a new group with a set of events"
+          }
+        },
+        "security": [],
+        "summary": "Get details and events for a group"
+      }
+    },
+    "/api/keywords": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [],
+        "summary": "/api/keywords"
+      }
+    },
+    "/api/locationsearch": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "longitude",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "latitude",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "radius",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "admiralty_accuracy": {
+                        "type": "string"
+                      },
+                      "admiralty_reliability": {
+                        "type": "string"
+                      },
+                      "author": {
+                        "type": [
+                          "string"
+                        ]
+                      },
+                      "creation_time": {
+                        "type": "string"
+                      },
+                      "event_time": {
+                        "type": "string"
+                      },
+                      "hcoe_domains": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "header": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "keywords": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "link": {
+                        "type": "string"
+                      },
+                      "location": {
+                        "type": "string"
+                      },
+                      "location_lat": {
+                        "type": "number"
+                      },
+                      "location_lng": {
+                        "type": "number"
+                      },
+                      "notes": {
+                        "type": "string"
+                      },
+                      "source": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "header",
+                      "link",
+                      "source",
+                      "admiralty_reliability",
+                      "admiralty_accuracy",
+                      "keywords",
+                      "event_time",
+                      "creation_time",
+                      "notes",
+                      "hcoe_domains",
+                      "location",
+                      "location_lng",
+                      "location_lat",
+                      "author"
+                    ],
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [],
+        "summary": "/api/locationsearch"
+      }
+    },
+    "/api/metrics": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "eventsCount": {
+                      "type": "integer"
+                    },
+                    "keywordsCount": {
+                      "additionalProperties": {
+                        "type": "integer"
+                      },
+                      "type": "object"
+                    },
+                    "totalKeywordsCount": {
+                      "type": "integer"
+                    },
+                    "uniqueKeywordsCount": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "eventsCount",
+                    "uniqueKeywordsCount",
+                    "totalKeywordsCount",
+                    "keywordsCount"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [],
+        "summary": "/api/metrics"
+      }
+    },
+    "/api/upload": {
+      "post": {
+        "description": "",
+        "requestBody": {
+          "content": {
+            "multipart/form-data; boundary=----WebKitFormBoundaryAlBL6qyc81HNnjHS": {}
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "files": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "files"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [],
+        "summary": "/api/upload"
+      }
+    },
+    "/events/{eventId}/group": {
+      "delete": {
+        "security": [],
+        "summary": "Delete a group from event"
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "eventId",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "put": {
+        "security": [],
+        "summary": "Update a group, add a group entry to event"
+      }
+    }
+  },
+  "servers": [
+    {
+      "description": "Local development server",
+      "url": "http://localhost:3000"
+    }
+  ]
+}

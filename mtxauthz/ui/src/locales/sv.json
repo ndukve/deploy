@@ -1,0 +1,165 @@
+{
+  "common": {
+    "copied": "Kopierat till urklipp!",
+    "copy": "Kopiera",
+    "hide": "Dölj",
+    "show": "Visa",
+    "retry": "Försök igen",
+    "back": "Tillbaka",
+    "next": "Nästa",
+    "close": "Stäng"
+  },
+  "home": {
+    "add": "Lägg till",
+    "documentation": "Dokumentation",
+    "documentation_link": "https://docs.pvarki.fi/sv/docs/guides/mtx-guide",
+    "error_loading_streams": "Ett fel uppstod när strömmar skulle läsas in. Försök igen senare.",
+    "loading": "Läser in...",
+    "result": "resultat",
+    "results": "resultat",
+    "description": "Sänd, titta på och hantera direkta videoflöden från anslutna enheter.",
+    "search": "Sök strömmar...",
+    "started_by": "Startad av: "
+  },
+  "live": {
+    "open_in_browser": "Öppna i webbläsaren"
+  },
+  "onboarding": {
+    "back": "Tillbaka",
+    "clickToEnlarge": "Klicka för att förstora",
+    "completion": "Introduktionen är slutförd!",
+    "completionDesc": "Du är redo och kan nu arbeta i full kapacitet.",
+    "finish": "Slutför",
+    "imageMissing": "Bild inte tillgänglig",
+    "next": "Nästa",
+    "of": "av",
+    "progressSaved": "Dina introduktionsframsteg har sparats.",
+    "review": "Granska introduktion",
+    "step": "Steg",
+    "steps": {
+      "welcome": {
+        "title": "Välkommen till MediaMTX",
+        "description": "Med MediaMTX kan du sända och titta på direkta videoflöden från anslutna enheter. Den här korta guiden visar var du hittar allt."
+      },
+      "walkthrough": {
+        "title": "Hitta rätt i gränssnittet",
+        "description": "(1) Tryck på en strömruta på startsidan för att börja titta.\n(2) Använd knappen Starta sändning för att starta ett nytt flöde från OpenTAK ICU, UAS Tool, GoPro eller någon avancerad källa."
+      }
+    },
+    "title": "Introduktion till MediaMTX"
+  },
+  "stream": {
+    "address": "Adress",
+    "advanced_links": "Avancerade länkar",
+    "gopro_app": "GoPro-app",
+    "opentak_icu": "OpenTak ICU",
+    "passw": "Lösenord",
+    "path": "Väg",
+    "port": "Port",
+    "protocol": "Protokoll",
+    "rtmps": "RTMPS",
+    "rtmps_with_auth": "RTMPS (med autentisering)",
+    "rtsps": "RTSPS",
+    "rtsps_with_auth": "RTSPS (med autentisering)",
+    "srt": "SRT",
+    "srt_with_auth": "SRT (med autentisering)",
+    "title": "Starta en ström",
+    "tools": "Verktyg",
+    "uastool": "UAS Tool",
+    "username": "Användarnamn",
+    "import": {
+      "auto": "Auto-importera inställningar till OpenTAK_ICU",
+      "warning": "Kräver OpenTAK_ICU version 1.5.4 eller nyare!",
+      "install": "Ladda ner OpenTAK_ICU från GitHub till Android.",
+      "manual": "Eller importera manuellt genom att kopiera dessa inställningar till inställningarna i OpenTAK_ICU:"
+    },
+    "uastool_import": "Importera inställningar till UAS Tool",
+    "stream_packages": "Ladda ner strömpaket",
+    "download_atak_rtmps": "ATAK RTMPS",
+    "download_browser_hls": "Webbläsare HLS",
+    "download_vlc_srt": "VLC SRT",
+    "download_vlc_hls": "VLC HLS"
+  },
+  "streams": {
+    "startBroadcasting": "Starta sändning",
+    "noStreams": "Inga strömmar tillgängliga",
+    "noStreamsHint": "Starta en sändning för att se strömmar här.",
+    "noSearchResults": "Inga strömmar matchar '{{query}}'",
+    "clearSearch": "Rensa sökning",
+    "live": "LIVE",
+    "offline": "OFFLINE",
+    "errorLoading": "Kunde inte ladda strömmar",
+    "errorLoadingStale": "Strömlistan kan vara inaktuell"
+  },
+  "video": {
+    "backToStreams": "Tillbaka till strömmar",
+    "connectionOptions": "Anslutningsalternativ",
+    "credentials": "Inloggningsuppgifter",
+    "play": "Spela ström",
+    "streamNotFound": "Strömmen hittades inte",
+    "streamNotFoundHint": "Strömmen kan ha avslutats eller URL:en är felaktig.",
+    "streamOffline": "Strömmen är offline",
+    "streamOfflineHint": "Strömmen sänder inte för tillfället.",
+    "playbackError": "Uppspelningen misslyckades",
+    "playbackErrorHint": "Kunde inte ansluta till strömmen. Den kan ha avslutats.",
+    "credentialsError": "Kunde inte ladda inloggningsuppgifter",
+    "downloadPackages": "Ladda ner paket",
+    "downloadBrowser": "Webbläsare",
+    "downloadVlc": "VLC",
+    "downloadTak": "TAK",
+    "advancedLinks": "Avancerade länkar"
+  },
+  "broadcast": {
+    "title": "Starta sändning",
+    "selectTool": "Välj ditt sändningsverktyg",
+    "opentak_icu": "OpenTAK ICU",
+    "opentak_icu_desc": "Sänd från ATAK via OpenTAK ICU",
+    "opentak_icu_step1": "Installera OpenTAK ICU-appen",
+    "opentak_icu_step2": "Använd importknappen för att importera inställningar",
+    "opentak_icu_step3": "Börja sända",
+    "opentak_icu_guide": "OpenTAK ICU-sändning",
+    "opentak_icu_guide_url": "https://docs.pvarki.fi/sv/docs/guides/mtx-guide/opentak-icu-HJresNyWaE",
+    "gopro": "GoPro",
+    "gopro_desc": "Sänd via GoPro",
+    "gopro_step1": "Installera GoPro Quik-appen",
+    "gopro_step2": "Anslut GoPro till appen",
+    "gopro_step3": "Använd länken för att börja sända",
+    "gopro_guide": "GoPro-sändning",
+    "gopro_guide_url": "https://docs.pvarki.fi/sv/docs/guides/mtx-guide/gopro-2PrQ7u3goE",
+    "gopro_appstore_alt": "Ladda ner GoPro Quik på App Store",
+    "gopro_googleplay_alt": "Hämta GoPro Quik på Google Play",
+    "uastool": "UAS Tool",
+    "uastool_desc": "Sänd från ATAK via UAS Tool",
+    "uastool_step1": "Installera ATAK och UAS Tool-tillägget",
+    "uastool_step2": "Använd importknappen för att importera inställningar",
+    "uastool_step3": "Börja sända",
+    "uastool_guide": "UAS Tool-sändning",
+    "uastool_guide_url": "https://docs.pvarki.fi/sv/docs/guides/mtx-guide/uas-tool-97tr5ME3hk",
+    "uastool_googleplay_alt": "Hämta UAS Tool på Google Play",
+    "advanced": "Avancerat",
+    "advanced_desc": "Manuella protokoll-URLer och inloggningsuppgifter",
+    "guideHint": "Om du behöver fler instruktioner, använd guideknappen",
+    "importSettings": "Importera inställningar",
+    "guide": "Guide",
+    "guideSteps": {
+      "opentak_icu": {
+        "auto_import": {
+          "title": "Importera inställningar automatiskt",
+          "description": "OpenTAK ICU tillhandahålls till Android-enheter efter anslutning till en TAK-server. Använd knappen Importera inställningar ovan för att auto-importera. Efter importen kan du börja sända."
+        },
+        "manual_settings": {
+          "title": "Öppna inställningar manuellt",
+          "description": "Om auto-import inte är tillgänglig, öppna OpenTAK ICU och tryck på kugghjulsikonen för att öppna inställningar."
+        },
+        "streaming_settings": {
+          "title": "Strömningsinställningar",
+          "description": "Navigera till 'Streaming Settings' för att konfigurera strömningsparametrarna."
+        },
+        "copy_values": {
+          "title": "Konfigurera strömvärden",
+          "description": "Ange Protokoll (RTMPS), Adress, Port (1936), Sökväg, Användarnamn och Lösenord. Dessa värden visas ovan i snabbstegen."
+        }
+      }
+    }
+  }
+}

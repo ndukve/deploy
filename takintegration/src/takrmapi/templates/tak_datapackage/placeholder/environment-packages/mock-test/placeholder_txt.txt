@@ -1,0 +1,4 @@
+<MissionPackageManifest placeholder folder/file>
+   <Configuration>
+      <Parameter name="uid" value="efdec6c3-5c62-5235-8b6e-a97fe82dc25e"/>
+</MissionPackageManifest>

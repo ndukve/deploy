@@ -1,0 +1,20 @@
+<?xml version='1.0' standalone='yes'?>
+<preferences>
+<preference version="1" name="com.atakmap.app.civ_preferences">
+  <entry key="takchatUseTakServerCreds_host" class="class java.lang.String">"SERVER IP / HOST"</entry>
+  <entry key="takchatEnabled" class="class java.lang.Boolean">true</entry>
+  <!-- Uses takserver credentials to login, needs ldap enrollment -->
+  <entry key="takchatUseTakServerCreds" class="class java.lang.Boolean">true</entry>
+  <entry key="takchatRequireSSL" class="class java.lang.Boolean">true</entry>
+  <entry key="takchatUseCustomHost" class="class java.lang.Boolean">true</entry>
+  <entry key="takchatUseTakServerTrustStore" class="class java.lang.Boolean">true</entry>
+  <entry key="takchatRequireHostnameValidation" class="class java.lang.Boolean">true</entry>
+  <entry key="takchatShowOffline" class="class java.lang.Boolean">false</entry>
+  <!-- XXX."SERVER-IP / Host. Default is "conference" (conference."SERVER IP / HOST") -->
+  <entry key="takchatServerConfPrefix" class="class java.lang.String">"SERVER CONF PREFIX"</entry>
+  <!-- Notification audio/vibration settings -->
+  <entry key="takchatVibratePhone" class="class java.lang.Boolean">true</entry>
+  <entry key="takchatAudibleNotifyRecv" class="class java.lang.Boolean">false</entry>
+  <entry key="takchatAudibleNotifySent" class="class java.lang.Boolean">false</entry>
+</preference>
+</preferences>

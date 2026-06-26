@@ -1,0 +1,99 @@
+on:
+  pull_request:
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      checks: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: recursive
+      - uses: pvarki/config-ci-library/.github/actions/setup-python@main
+        with:
+          python-version: "3.12"
+      - uses: pvarki/config-ci-library/.github/actions/setup-typescript@main
+        with:
+          node-version: "24"
+          pnpm-version: "11"
+          working-directory: ui
+      - name: Do pre-commit checks (black, lint, mypy)
+        run: |
+          uv run docker/pre_commit_init.sh
+
+  test:
+    runs-on: arc-runner-set
+    permissions:
+      contents: write
+      pull-requests: write
+      checks: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: recursive
+      - uses: pvarki/config-ci-library/.github/actions/setup-python@main
+        with:
+          python-version: "3.12"
+      - uses: pvarki/config-ci-library/.github/actions/setup-typescript@main
+        with:
+          node-version: "24"
+          pnpm-version: "11"
+          working-directory: ui
+      - name: Test with pytest
+        env:
+          SYNAPSE_REGISTRATION_SECRET: "ci-test-secret" # pragma: allowlist secret
+        run: |
+          uv run py.test -v --junitxml=pytest.xml
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v4
+        if: success() || failure() # always run even if the previous step fails
+        with:
+          report_paths: "**/pytest*.xml"
+          detailed_summary: true
+          check_name: "JUnit report (local)"
+
+  snyk-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pvarki/config-ci-library/.github/actions/setup-python@main
+        with:
+          python-version: "3.12"
+      - uses: pvarki/config-ci-library/.github/actions/snyk-test@main
+        with:
+          snyk-org: deployapp-products
+          snyk-token: ${{ secrets.SNYK_TOKEN }}
+
+  docker-build-and-verify:
+    runs-on: arc-runner-set
+    steps:
+      - uses: actions/checkout@v6
+      - name: Build test target
+        run: docker build --target test -t matrixrmapi:test .
+      - name: Build production target
+        run: docker build --target production -t matrixrmapi:production .
+  publish:
+    needs: [test, snyk-test, docker-build-and-verify]
+    runs-on: arc-runner-set
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: recursive
+      - name: Publish Docker image
+        uses: ./.github/actions/publish-image
+        with:
+          product: matrix
+          component: integration
+          dockerhub-username: ${{ vars.DOCKERHUB_USERNAME }}
+          dockerhub-token: ${{ secrets.DOCKERHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          acr-repo: ${{ vars.ACR_REPO }}
+          acr-username: ${{ vars.ACR_USERNAME }}
+          acr-token: ${{ secrets.ACR_TOKEN }}

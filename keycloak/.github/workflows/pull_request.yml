@@ -1,0 +1,47 @@
+on:
+  pull_request:
+  workflow_dispatch:
+
+# Remember to change KC_VERSION_TAG also in push_to_main.yml and .bumpversion.toml
+env:
+  KC_VERSION_TAG: 24.0.5
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      checks: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Run prek
+        uses: j178/prek-action@v2
+        env:
+          SKIP: no-commit-to-branch
+      - name: Validate bumpversion
+        uses: pvarki/config-ci-library/.github/actions/validate-bumpversion@main
+
+  build_and_publish:
+    runs-on: arc-runner-set
+    needs: [checks]
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publish image
+        uses: pvarki/config-ci-library/.github/actions/publish-image@main
+        with:
+          product: keycloak
+          component: server
+          build-args: |
+            KC_VERSION_TAG=${{ env.KC_VERSION_TAG }}
+          dockerhub-username: ${{ vars.DOCKERHUB_USERNAME }}
+          dockerhub-token: ${{ secrets.DOCKERHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          acr-repo: ${{ vars.ACR_REPO }}
+          acr-username: ${{ vars.ACR_USERNAME }}
+          acr-token: ${{ secrets.ACR_TOKEN }}

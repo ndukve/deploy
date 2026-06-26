@@ -1,0 +1,141 @@
+"""product descriptions endpoints"""
+
+from typing import Literal, Optional, List, cast
+import logging
+
+from fastapi import APIRouter, Depends
+from pydantic import BaseModel, Field, ConfigDict, RootModel
+from libpvarki.middleware import MTLSHeader
+from rasenmaeher_api.web.api.middleware.user import ValidUser
+from ...productapihelpers import get_from_all_products, get_from_product
+
+LOGGER = logging.getLogger(__name__)
+
+router = APIRouter()  # These endpoints are public
+router_v2 = APIRouter()
+
+router_v2_admin = APIRouter(dependencies=[Depends(MTLSHeader(auto_error=True))])
+
+
+# FIXME: Move to libpvarki
+class ProductDescription(BaseModel):
+    """Description of a product"""
+
+    model_config = ConfigDict(extra="forbid")
+
+    shortname: str = Field(description="Short name for the product, used as slug/key in dicts and urls")
+    title: str = Field(description="Fancy name for the product")
+    icon: Optional[str] = Field(description="URL for icon")
+    description: str = Field(description="Short-ish description of the product")
+    language: str = Field(description="Language of this response")
+
+
+class ProductComponent(BaseModel):
+    """Product component info"""
+
+    type: Literal["link", "markdown", "component"]
+    ref: str
+
+
+class ProductDescriptionExtended(BaseModel):
+    """Description of a product"""
+
+    model_config = ConfigDict(extra="forbid")
+
+    shortname: str = Field(description="Short name for the product, used as slug/key in dicts and urls")
+    title: str = Field(description="Fancy name for the product")
+    icon: Optional[str] = Field(description="URL for icon")
+    description: str = Field(description="Short-ish description of the product")
+    language: str = Field(description="Language of this response")
+    docs: Optional[str] = Field(description="Link to documentation")
+    component: ProductComponent = Field(description="Component type and ref")
+
+
+class ProductDescriptionList(RootModel[List[ProductDescription]]):
+    """List of product descriptions"""
+
+
+class ProductDescriptionExtendedList(RootModel[List[ProductDescriptionExtended]]):
+    """List of product descriptions"""
+
+
+@router.get(
+    "/{language}",
+    response_model=ProductDescriptionList,
+)
+async def list_product_descriptions(language: str) -> ProductDescriptionList:
+    """Fetch description from each product in manifest"""
+    responses = await get_from_all_products(f"api/v1/description/{language}", ProductDescription)
+    if responses is None:
+        raise ValueError("Everything is broken")
+    return ProductDescriptionList([cast(ProductDescription, res) for res in responses.values() if res])
+
+
+@router.get(
+    "/{product}/{language}",
+    response_model=ProductDescription,
+)
+async def get_product_description(language: str, product: str) -> Optional[ProductDescription]:
+    """Fetch description from given product in manifest"""
+    response = await get_from_product(product, f"api/v1/description/{language}", ProductDescription)
+    if response is None:
+        # TODO: Raise a reasonable error instead
+        return None
+    response = cast(ProductDescription, response)
+    return response
+
+
+@router_v2.get(
+    "/{language}",
+    response_model=ProductDescriptionExtendedList,
+)
+async def list_product_descriptions_extended(language: str) -> ProductDescriptionExtendedList:
+    """Fetch description from each product in manifest"""
+    responses = await get_from_all_products(f"api/v2/description/{language}", ProductDescriptionExtended)
+    if responses is None:
+        raise ValueError("Everything is broken")
+    return ProductDescriptionExtendedList([cast(ProductDescriptionExtended, res) for res in responses.values() if res])
+
+
+@router_v2.get(
+    "/{product}/{language}",
+    response_model=ProductDescriptionExtended,
+)
+async def get_product_description_extended(language: str, product: str) -> Optional[ProductDescriptionExtended]:
+    """Fetch description from given product in manifest"""
+    response = await get_from_product(product, f"api/v2/description/{language}", ProductDescriptionExtended)
+
+    if response is None:
+        # TODO: Raise a reasonable error instead
+        return None
+    response = cast(ProductDescriptionExtended, response)
+    return response
+
+
+@router_v2_admin.get(
+    "/{language}",
+    response_model=ProductDescriptionExtendedList,
+    dependencies=[Depends(ValidUser(auto_error=True, require_roles=["admin"]))],
+)
+async def list_admin_product_descriptions_extended(language: str) -> ProductDescriptionExtendedList:
+    """Fetch admin description from each product in manifest"""
+    responses = await get_from_all_products(f"api/v2/admin/description/{language}", ProductDescriptionExtended)
+    if responses is None:
+        raise ValueError("Everything is broken")
+    return ProductDescriptionExtendedList([cast(ProductDescriptionExtended, res) for res in responses.values() if res])
+
+
+@router_v2_admin.get(
+    "/{product}/{language}",
+    response_model=ProductDescriptionExtended,
+    dependencies=[Depends(ValidUser(auto_error=True, require_roles=["admin"]))],
+)
+async def get_admin_product_description_extended(language: str, product: str) -> Optional[ProductDescriptionExtended]:
+    """Fetch admin description from given product in manifest"""
+    response = await get_from_product(product, f"api/v2/admin/description/{language}", ProductDescriptionExtended)
+
+    if response is None:
+        # TODO: Raise a reasonable error instead
+        return None
+    response = cast(ProductDescriptionExtended, response)
+    return response

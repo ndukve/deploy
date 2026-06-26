@@ -1,0 +1,17 @@
+// Custom translation overrides for this CryptPad instance.
+// Hides donation and contact buttons that are not relevant
+// for a private deployment.
+define(['/common/translations/messages.js'], function (Messages) {
+    // Remove donation / crowdfunding UI
+    Messages.crowdfunding_button = "";
+    Messages.crowdfunding_button2 = "";
+    Messages.crowdfunding_popup_text = "";
+    Messages.crowdfunding_popup_no = "";
+    Messages.footer_donate = "";
+
+    // Remove "contact the developers" link (admin contact stays)
+    Messages.contact_dev = "";
+    Messages.contact_devHint = "";
+
+    return Messages;
+});

@@ -1,0 +1,9 @@
+.git
+.gitignore
+.env
+.worktrees
+volumes
+rmcryptpad/.pytest-oidc
+rmcryptpad/.pytest_cache
+rmcryptpad/ui/dist
+rmcryptpad/ui/node_modules

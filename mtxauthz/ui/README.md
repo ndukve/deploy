@@ -1,0 +1,1 @@
+# MediaMtx federated component

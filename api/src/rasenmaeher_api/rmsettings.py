@@ -1,0 +1,186 @@
+"""Application settings."""
+
+from typing import Optional, Any, Dict, ClassVar, List
+import enum
+from pathlib import Path
+import logging
+import json
+
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+LOGGER = logging.getLogger(__name__)
+
+
+class LogLevel(str, enum.Enum):
+    """Possible log levels."""
+
+    NOTSET = "NOTSET"
+    DEBUG = "DEBUG"
+    INFO = "INFO"
+    WARNING = "WARNING"
+    ERROR = "ERROR"
+    FATAL = "FATAL"
+
+
+class CertBackend(str, enum.Enum):
+    """Available certificate backend implementations."""
+
+    CFSSL = "cfssl"
+    CERT_MANAGER = "cert_manager"
+
+
+class RMSettings(BaseSettings):
+    """
+    Application settings.
+
+    These parameters can be configured
+    with environment variables.
+    """
+
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_prefix="RM_",
+        env_file_encoding="utf-8",
+    )
+
+    host: str = "127.0.0.1"
+    port: int = 8000
+    # quantity of workers for uvicorn
+    workers_count: int = 1
+    # Enable uvicorn reloading
+    reload: bool = True
+
+    # Current environment
+    environment: str = "dev"
+
+    # Set log_level - default is DEBUG
+    log_level: LogLevel = LogLevel.DEBUG
+
+    @property
+    def log_level_int(self) -> int:
+        """Return the integer log level based on the LogLevel enum"""
+        level_map = {
+            LogLevel.NOTSET: logging.NOTSET,
+            LogLevel.DEBUG: logging.DEBUG,
+            LogLevel.INFO: logging.INFO,
+            LogLevel.WARNING: logging.WARNING,
+            LogLevel.ERROR: logging.ERROR,
+            LogLevel.FATAL: logging.FATAL,
+        }
+        return level_map.get(self.log_level, logging.DEBUG)
+
+    # Manifest file from kraftwerk
+    integration_api_port: int = 4625
+    kraftwerk_manifest_path: str = "/pvarki/kraftwerk-rasenmaeher-init.json"
+    kraftwerk_manifest_bool: bool = False
+    kraftwerk_manifest_dict: Dict[Any, Any] = {}
+    integration_api_timeout: float = 3.0
+
+    # Api access management
+    api_client_cert_header: str = "X-ClientCert-DN"
+    test_api_client_cert_header_value: str = "CN=fake.localmaeher.dev.pvarki.fi,O=N/A"
+    api_healthcheck_proto: str = "http://"
+    api_healthcheck_url: str = "/api/v1/healthcheck"
+    api_healthcheck_headers: str = '{"probably":"not_needed"}'
+
+    # Sentry's configuration.
+    sentry_dsn: Optional[str] = None
+    sentry_sample_rate: float = 1.0
+
+    # Certificate backend selection
+    cert_backend: CertBackend = CertBackend.CFSSL
+
+    # Cfssl configuration
+    cfssl_host: str = "http://127.0.0.1"
+    cfssl_port: str = "8888"
+    ocsprest_host: str = "http://127.0.0.1"
+    ocsprest_port: str = "8887"
+    cfssl_timeout: float = 2.5
+
+    # Cert-Manager configuration (used when cert_backend == CERT_MANAGER)
+    cert_manager_namespace: str = "opendefence-system"
+    cert_manager_issuer_name: str = "intermediate-ca-issuer"
+    cert_manager_issuer_kind: str = "ClusterIssuer"
+    cert_manager_issuer_group: str = "cert-manager.io"
+    cert_manager_timeout: float = 30.0
+    cert_manager_cert_duration: str = "8760h"
+    cert_manager_ca_bundle_path: str = "/pvarki-ca/opendefence-ca-cert.pem"
+    cert_manager_cleanup_on_revoke: bool = True
+
+    # Shared secret used by the Traefik callsign-validity plugin to auth to the
+    # internal websocket. Optional — if unset, the websocket accepts any caller
+    # (suitable for in-cluster-only Service exposure during local dev).
+    callsign_validity_secret: Optional[str] = None
+
+    persistent_data_dir: str = "/data/persistent"
+
+    # mtls
+    mtls_client_cert_path: Optional[str] = None
+    mtls_client_key_path: Optional[str] = None
+    mtls_client_cert_cn: str = "rasenmaeher"
+
+    # LDAP configuration
+    ldap_conn_string: Optional[str] = None
+    ldap_username: Optional[str] = None
+    ldap_client_secret: Optional[str] = None
+
+    # Tilauspalvelu integration
+    tilauspalvelu_jwt: str = "https://tilaa.pvarki.fi/api/v1/config/jwtPublicKey.pem"
+    kraftwerk_announce: Optional[str] = None  # When KRAFTWERK actually exists
+    kraftwerk_timeout: float = 2.0
+
+    # keycloak integration
+    kc_url: str = "http://keycloak:8080"
+    kc_username: str = "admin"
+    kc_password: Optional[str] = None
+    kc_user_realm: str = "master"  # Which realm to use to auth the user
+    kc_realm: str = "RASENMAEHER"  # In which realm the real users are
+    kc_enabled: bool = True  # Whether to use KC or not (mainly so that unit tests have less dependencies for now)
+
+    # Enrollment code generation related
+    code_size: int = 8
+    code_avoid_confusion: bool = True  # Replace 1 and 0 with O and I to avoid confusion
+    enrollment_lifetime: int = 60 * 60 * 4  # 4 hours, JWT/cookie lifetime
+
+    _singleton: ClassVar[Optional["RMSettings"]] = None
+
+    @classmethod
+    def singleton(cls) -> "RMSettings":
+        """Return singleton"""
+        if not RMSettings._singleton:
+            RMSettings._singleton = RMSettings()
+        return RMSettings._singleton
+
+    def __init__(self, *args: List[Any], **kwargs: Dict[str, Any]) -> None:
+        super().__init__(*args, **kwargs)  # type: ignore[arg-type]
+        # FIXME: When the switchme_to_singleton_call has been removed call load_manifest here
+
+    def load_manifest(self) -> None:
+        """Load the kraftwerk manifest file"""
+        if self.kraftwerk_manifest_bool:
+            return
+        pth = Path(self.kraftwerk_manifest_path)
+        if not pth.exists():
+            raise ValueError(f"{self.kraftwerk_manifest_path} does not exist")
+        self.kraftwerk_manifest_dict = json.loads(pth.read_text(encoding="utf-8"))
+        self.kraftwerk_manifest_bool = True
+
+    @property
+    def deployment_name(self) -> str:
+        """Resolve the deployment name"""
+        if not self.kraftwerk_manifest_bool:
+            self.load_manifest()
+        if "dns" in self.kraftwerk_manifest_dict:
+            my_dn = str(self.kraftwerk_manifest_dict["dns"])
+            return my_dn.split(".", maxsplit=1)[0]
+        LOGGER.warning("DNS name not defined")
+        return "undefined"
+
+    @property
+    def valid_product_cns(self) -> List[str]:
+        """Get valid CNs for productapi certs"""
+        self.load_manifest()
+        return [product["certcn"] for product in self.kraftwerk_manifest_dict["products"].values()]
+
+
+switchme_to_singleton_call = RMSettings.singleton()

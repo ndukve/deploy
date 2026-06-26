@@ -1,0 +1,189 @@
+on:
+  pull_request:
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  version-check:
+    name: Check version increment
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pvarki/config-ci-library/.github/actions/validate-bumpversion@main
+  pre-commit:
+    name: Run pre-commit checks
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      checks: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pvarki/config-ci-library/.github/actions/setup-python@main
+        with:
+          python-version: "3.14"
+      - name: Do pre-commit checks
+        run: |
+          uv run prek run --all-files
+  test:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      checks: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pvarki/config-ci-library/.github/actions/setup-python@main
+        with:
+          python-version: "3.14"
+      - name: Test with pytest
+        run: |
+          uv run py.test -v --junitxml=pytest.xml
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v4
+        if: success() || failure() # always run even if the previous step fails
+        with:
+          report_paths: "**/pytest*.xml"
+          detailed_summary: true
+          check_name: "JUnit report (local)"
+  snyk-test:
+    name: Run Snyk test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pvarki/config-ci-library/.github/actions/setup-python@main
+      - uses: pvarki/config-ci-library/.github/actions/snyk-test@main
+        with:
+          snyk-org: deployapp-core-services
+          snyk-token: ${{ secrets.SNYK_TOKEN }}
+
+  docker-build-and-verify-ocsp:
+    name: Docker build and verification for OCSP build target
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - run: mkdir -p /tmp/ca_public && touch /tmp/ca_public/crl.der
+      - run: docker build --target ocsp -t rasenmaeher_ocsp .
+      - run: docker run -d -p 8889:8889 -e CFSSL_OCSP_BIND_PORT=8889 -v /tmp/ca_public:/ca_public --name rasenmaeher_ocsp rasenmaeher_ocsp
+      - run: sleep 60 && docker logs rasenmaeher_ocsp
+      - run: echo 'verify ocsp is running' && docker inspect --format='{{.State.Running}}' rasenmaeher_ocsp | grep true
+      - run: |
+          CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8889/)
+          echo "HTTP status: $CODE"
+          [ "$CODE" != "000" ]
+  publish-ocsp:
+    name: Publish OCSP build target
+    needs:
+      [
+        "version-check",
+        "pre-commit",
+        "test",
+        "docker-build-and-verify-cfssl",
+        "docker-build-and-verify-ocsprest",
+        "docker-build-and-verify-ocsp",
+      ]
+    runs-on: ubuntu-latest # arc-runner-set
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: recursive
+      - name: Publish Docker image
+        uses: pvarki/config-ci-library/.github/actions/publish-image@main
+        with:
+          product: ocsp
+          component: api
+          target: ocsp
+          dockerhub-username: ${{ vars.DOCKERHUB_USERNAME }}
+          dockerhub-token: ${{ secrets.DOCKERHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          acr-repo: ${{ vars.ACR_REPO }}
+          acr-username: ${{ vars.ACR_USERNAME }}
+          acr-token: ${{ secrets.ACR_TOKEN }}
+
+  docker-build-and-verify-ocsprest:
+    name: Docker build and verification for OCSP REST build target
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - run: mkdir -p /tmp/ca_public && touch /tmp/ca_public/crl.der
+      - run: docker build --target ocsprest -t rasenmaeher_ocsprest .
+      - run: docker run -d -p 8887:8887 -v /tmp/ca_public:/ca_public --name rasenmaeher_ocsprest rasenmaeher_ocsprest
+      - run: sleep 3 && docker logs rasenmaeher_ocsprest
+      - run: echo 'print whole trace' && curl http://localhost:8887/api/v1/healthcheck
+      - run: echo 'verify success' && curl http://localhost:8887/api/v1/healthcheck | grep 'success'
+  publish-ocsprest:
+    name: Publish OCSP REST build target
+    needs:
+      [
+        "version-check",
+        "pre-commit",
+        "test",
+        "docker-build-and-verify-cfssl",
+        "docker-build-and-verify-ocsprest",
+        "docker-build-and-verify-ocsp",
+      ]
+    runs-on: ubuntu-latest # arc-runner-set
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: recursive
+      - name: Publish Docker image
+        uses: pvarki/config-ci-library/.github/actions/publish-image@main
+        with:
+          product: ocsprest
+          component: server
+          target: ocsprest
+          dockerhub-username: ${{ vars.DOCKERHUB_USERNAME }}
+          dockerhub-token: ${{ secrets.DOCKERHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          acr-repo: ${{ vars.ACR_REPO }}
+          acr-username: ${{ vars.ACR_USERNAME }}
+          acr-token: ${{ secrets.ACR_TOKEN }}
+
+  docker-build-and-verify-cfssl:
+    name: Docker build and verification for CFSSL build target
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - run: docker build --target api -t rasenmaeher_cfssl .
+      - run: docker run -d -p 8888:8888 --name rasenmaeher_cfssl rasenmaeher_cfssl
+      - run: sleep 60 && docker logs rasenmaeher_cfssl
+      - run: echo 'print whole trace' && curl http://localhost:8888
+      - run: echo 'verify cfssl title' && curl http://localhost:8888 | grep '<title>CFSSL</title>'
+  publish-cfssl:
+    name: Publish CFSSL build target
+    needs:
+      [
+        "version-check",
+        "pre-commit",
+        "test",
+        "docker-build-and-verify-cfssl",
+        "docker-build-and-verify-ocsprest",
+        "docker-build-and-verify-ocsp",
+      ]
+    runs-on: ubuntu-latest # arc-runner-set
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: recursive
+      - name: Publish Docker image
+        uses: pvarki/config-ci-library/.github/actions/publish-image@main
+        with:
+          product: cfssl
+          component: api
+          target: api
+          dockerhub-username: ${{ vars.DOCKERHUB_USERNAME }}
+          dockerhub-token: ${{ secrets.DOCKERHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          acr-repo: ${{ vars.ACR_REPO }}
+          acr-username: ${{ vars.ACR_USERNAME }}
+          acr-token: ${{ secrets.ACR_TOKEN }}

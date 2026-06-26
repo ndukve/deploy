@@ -1,0 +1,94 @@
+version: "3.4"
+
+x-domains_env:
+  SERVER_DOMAIN: &serverdomain ${SERVER_DOMAIN:-localmaeher.dev.pvarki.fi}
+  MTLS_DOMAIN: &mtlsdomein "mtls.${SERVER_DOMAIN:-localmaeher.dev.pvarki.fi}"
+  API_HTTPS_PORT: &apiport ${NGINX_HTTPS_PORT:-4439}
+
+x-cfssl_env: &cfssl_env
+  INT_SHARED_CERT_FOLDER: /ca_public
+  CFSSL_BIND_ADDRESS: ${CFSSL_BIND_ADDRESS:-0.0.0.0}
+  CFSSL_BIND_PORT: &cfsslport ${CFSSL_BIND_PORT:-8888}
+  CFSSL_OCSP_BIND_PORT: &oscpport ${CFSSL_OCSP_BIND_PORT:-8889}
+  CFSSL_CA_NAME: ${CFSSL_CA_NAME:-testca}
+  OCSP_HOST: *serverdomain
+  OCSP_PORT: *apiport
+  CFSSL_PERSISTENT_FOLDER: /data/persistent
+
+services:
+  cfssl:
+    image: pvarki/cfssl:api-latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: api
+    networks:
+      - canet
+    environment:
+      <<: *cfssl_env
+    volumes:
+      - cfssl_data:/data/persistent
+      - ca_public:/ca_public
+    healthcheck:
+      test: "cfssl info -remote http://127.0.0.1:8888 || exit 1"
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    restart: unless-stopped
+
+  ocsp:
+    image: pvarki/cfssl:ocsp-latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: ocsp
+    networks:
+      - ocspnet
+    environment:
+      <<: *cfssl_env
+    volumes:
+      - cfssl_data:/data/persistent
+      - ca_public:/ca_public
+    healthcheck:
+      test: "true" # FIXME
+      interval: 5s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    depends_on:
+      cfssl:
+        condition: service_healthy
+    restart: unless-stopped
+
+  ocsprest:
+    image: pvarki/cfssl:ocsprest-latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: ocsprest
+    networks:
+      - ocspnet
+    environment:
+      <<: *cfssl_env
+    volumes:
+      - cfssl_data:/data/persistent
+      - ca_public:/ca_public
+    healthcheck:
+      test: "ocsprest healthcheck || exit 1"
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    depends_on:
+      cfssl:
+        condition: service_healthy
+    restart: unless-stopped
+
+networks:
+  canet:
+  ocspnet:
+
+volumes:
+  cfssl_data:
+  ca_public:

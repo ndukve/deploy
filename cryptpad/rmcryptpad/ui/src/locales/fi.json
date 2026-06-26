@@ -1,0 +1,182 @@
+{
+  "features": {
+    "docs": {
+      "steps": {
+        "onword": {
+          "description": "Vaikka CryptPad ei tue esimerkiksi .docx-asiakirjojen muokkausta reaaliaikaisesti selaimellasi, voit toki jakaa niitä CryptDrivellä ja muokata niitä paikallisesti.",
+          "title": "Muut tiedostoformaatit"
+        },
+        "collaborate": {
+          "description": "Kirjoita dokumenttia samanaikaisesti muiden kanssa.",
+          "title": "Reaaliaikainen yhteistyö"
+        },
+        "create": {
+          "description": "Klikkaa hallintapaneelissa '+' ja valitse 'Teksti'. Uusi salattu dokumentti luodaan.",
+          "title": "Dokumentin luominen"
+        },
+        "intro": {
+          "description": "CryptPad tukee Rich Text-(rtf) dokumenttien luontia ja muokkausta reaaliaikaisesti suoraan selaimesta.",
+          "title": "Rtf-tekstidokumentit"
+        },
+        "share": {
+          "description": "Voit myös keskustella asiakirjasta suoraan asiakirjan muokkausruudussa.",
+          "title": "Keskustele asiakirjasta"
+        }
+      },
+      "title": "Kirjoita ja jaa dokumentteja"
+    },
+    "kanban": {
+      "steps": {
+        "create1": {
+          "description": "Klikkaa '+' ja valitse 'Kanban'.",
+          "title": "Kanban-taulun luominen"
+        },
+        "create2": {
+          "description": "Luo sarakkeita työnkulun vaiheille ja lisää kortteja tehtäville. Ohessa esimerkkinä kanban-tehtävien suoritusvaiheen seurantataulukko.",
+          "title": "Kanban-taulun muokkaaminen"
+        },
+        "intro": {
+          "description": "CryptPadin Kanban-sovellus on kuin lappu- tai valkotaulu. Voit esimerkiksi järjestää tehtävät suoritusvaiheen perusteella, tai ylläpitää tilannekuvataulua.",
+          "title": "Kanban-tehtävätaulut"
+        },
+        "manage": {
+          "description": "Klikkaa korttia lisätäksesi tietoja. Voit lisätä myös kuvia kortteihin. Vedä ja pudota kortteja sarakkeiden valilla päivittääksesi tilaa.",
+          "title": "Tehtäväkorttien hallinta"
+        },
+        "situation": {
+          "description": "Kanban-sovellusta voi käyttää myös tilannetauluna. Päivitä käsityksesi yksikköjen tehtävän suoritusvaiheesta, tehtävästä ja vihollistilanteesta kortteihin, ja jaa näin tilannekeskukselle ymmärryksesi pintatilanteesta.",
+          "title": "Tehtäväkorttien hallinta"
+        }
+      },
+      "title": "Tehtävätaulut (Kanban)"
+    },
+    "presentations": {
+      "steps": {
+        "onword": {
+          "description": "Vaikka CryptPad ei tue esimerkiksi Powerpointien muokkausta reaaliaikaisesti selaimellasi, voit toki jakaa niitä CryptDrivellä ja muokata sekä esittää niitä paikallisesti.",
+          "title": "Muut tiedostoformaatit"
+        },
+        "create": {
+          "description": "Klikkaa '+' ja valitse 'Dia'",
+          "title": "Aloita diaesityksen luonti"
+        },
+        "intro": {
+          "description": "CryptPad sisältää Markdown-pohjaisen esitystyökalun, jolla voit luoda diaesityksiä nopeasti. Toisin kuin tavanomainen powerpoint, kirjoitat esityksesi tekstillä ja työkalu sijoittaa tekstisi esitykseen.",
+          "title": "Luo esityksiä"
+        },
+        "present": {
+          "description": "Kirjoita diasi tekstinä vasemmalle kuvan osoittamalla tavalla. Diojen erotus tapahtuu merkinnällä '---'.Klikkaa 'Esitä'-painiketta siirtyäksesi koko nayton esitystilaan. Navigoi dioja nuolinäppäimilla.",
+          "title": "Luo ja esitä dioja"
+        }
+      },
+      "title": "Esitykset"
+    },
+    "unitUse": {
+      "steps": {
+        "intro": {
+          "description": "Tämä Cryptpad-instanssi on uniikki eli mukana vain tässä Deploy App-palvelimessa. Kaikki data pysyy omassa infrastruktuurissa - ja katoaa täysin, kun palvelin suljetaan. Uusi palvelin voidaan helposti luoda tyhjänä mutta muutoin samanlaisena.",
+          "title": "Hajautettu palvelu"
+        },
+        "setup": {
+          "description": "Seuraavassa kuvataan yksinkertainen ja tehokas tapa käyttää Cryptpadia tiimissäsi tai yksikössäsi. Johtamisjärjestelmästä vastaavana, aloita luomalla kattotason tiimi Cryptpadissa.",
+          "title": "Suositeltu käyttötapa - esimerkki"
+        },
+        "setup1": {
+          "description": "Luo yksiköllesi tiimi Cryptpadissa. Näin saat jaetun driven ja esimerkiksi kalenterin helposti. Aloita etsimällä Tiimi-valikko oikealta yläkulmasta.",
+          "title": "Luo tiimi yksiköllesi (1/8)"
+        },
+        "setup2": {
+          "description": "Tiimi-valikossan näkyy Cryptpad-tiimit, johon kuulut. Luo uusi.",
+          "title": "Luo tiimi yksiköllesi (2/8)"
+        },
+        "setup3": {
+          "description": "Anna tiimillesi kuvaava nimi ja jatka.",
+          "title": "Luo tiimi yksiköllesi (3/8)"
+        },
+        "setup4": {
+          "description": "Tiimisi on luotu ja näkyy tiimivalikossa. Jatka painamalla tiimisi kuvaketta.",
+          "title": "Luo tiimi yksiköllesi (4/8)"
+        },
+        "setup5": {
+          "description": "Täältä löydät tiimisi jaetun driven. Seuraavaksi navigoi Members (Jäsenet)-valikkoon luodaksesi kutsun tiimiisi.",
+          "title": "Luo tiimi yksiköllesi (5/8)"
+        },
+        "setup6": {
+          "description": "Jotta muut pääsevät tiimisi, sinun on luotava kutsulinkki tiimiisi. Kuvassa on suosittelemamme asetukset. Paina lopuksi Create link luodaksesi jaettavan kutsulinkin.",
+          "title": "Luo tiimi yksiköllesi (6/8)"
+        },
+        "setup7": {
+          "description": "Kopioi linkki ja jaa se haluamassasi viestipalvelussa. Vastaanottajan tulee olla yksikkösi Deploy App-palvelimessa mukana - ilman Deploy Appin mTLS-sertifikaattia Cryptpadiinne ei turvallisuussyistä pääse.",
+          "title": "Luo tiimi yksiköllesi (7/8)"
+        },
+        "setup8": {
+          "description": "Liittyvän tiiminjäsenen näkymä on seuraavankaltainen. Tämän jälkeen hän näkee tiimisi jaetun driven.",
+          "title": "Luo tiimi yksiköllesi (8/8)"
+        },
+        "calender1": {
+          "description": "Tiedostojen ja yhteismuokkauksen lisäksi voit käyttää tiimille jaettuja kalentereita. Tehdäksesi niin, siirry ensin Kalenterit-valikkoon",
+          "title": "Jaettu kalenteri (1/3)"
+        },
+        "calender2": {
+          "description": "Luo uusi kalenteri ja nimeä se sopivasti. Tämän jälkeen valitse Jakaminen-valikko.",
+          "title": "Jaettu kalenteri (2/3)"
+        },
+        "calender3": {
+          "description": "Jaa kalenteri tiimille. Tämän jälkeen tiimisi jäsenet löytävät omasta Kalenterit-valikostaan tämän jaetun kalenterin.",
+          "title": "Jaettu kalenteri (3/3)"
+        },
+        "end": {
+          "description": "Tiimin Asetukset-valikosta voit helposti varmuuskopioida tiimin jaetun Cryptdriven, eli kaikki sinne luodut tiedot. Tehtävänne päättyessä, ota varmuuskopio. Voit ladata sen seuraavalle Deploy App Cryptpad-palvelimellesi, tai muuhun järjestelmään tarpeen mukaan. Muista turvallinen tietojenkäsittely!",
+          "title": "Siirtyminen seuraavaan tehtävään - varmuuskopioi tiedot"
+        }
+      },
+      "title": "CryptPad yksikön käytössa"
+    }
+  },
+  "home": {
+    "featuresTitle": "CryptPadin käyttö",
+    "launch": "Avaa CryptPad!",
+    "loginAction": "Kirjaudu CryptPadiin!",
+    "loginInfo": "Tunnistaudut peitenimellä {{callsign}}"
+  },
+  "onboarding": {
+    "back": "Takaisin",
+    "clickToEnlarge": "Klikkaa suurentaaksesi",
+    "completion": "Perehdytys valmis!",
+    "completionDesc": "Olet valmis aloittamaan CryptPadin käytön.",
+    "finish": "Valmis",
+    "imageMissing": "Kuva ei saatavilla",
+    "next": "Seuraava",
+    "of": "/",
+    "progressSaved": "Perehdytyksen edistyminen tallennettu.",
+    "review": "Mikä on CryptPad?",
+    "step": "Vaihe",
+    "steps": {
+      "createDoc": {
+        "description": "Klikkaa '+'-painiketta hallintapaneelissa luodaksesi uuden dokumentin. Valitse tekstidokumenteista, koodieditorista, taulukoista, kanban-tauluista, esityksistä, piirtotauluista, lomakkeista ja muista. Kaikki dokumentit salataan automaattisesti.",
+        "title": "Luo ensimmäinen dokumentti"
+      },
+      "dashboard": {
+        "description": "Kirjautumisen jälkeen näkyviin tulee CryptPad-hallintapaneeli. Täältä voit luoda uusia dokumentteja, käyttää viimeaikaisia tiedostoja, hallita CryptDrivea (tiedostojen tallennus) ja tehdä yhteistyötä tiimin jäsenien kanssa.",
+        "title": "CryptPad-hallintapaneeli"
+      },
+      "share": {
+        "description": "Jakaaksesi dokumentin, klikkaa jakopainiketta työkalupalkissa. Voit jakaa tietyille tiimin jäsenille tai luoda linkin. Jaetut dokumentit tukevat reaaliaikaista yhteistyötä: useat käyttäjät voivat muokata samanaikaisesti.",
+        "title": "Jaa tiimisi kanssa"
+      },
+      "signIn": {
+        "description": "CryptPad on integroitu Deploy Appin sertifikaattipohjaiseen kirjautumiseen. Klikkaa 'Avaa CryptPad!' ja kirjaudut automaattisesti Deploy App -tunnuksillasi. Erillistä tiliä tai salasanaa ei tarvita.",
+        "title": "Kirjaudu Deploy Appilla"
+      },
+      "welcome": {
+        "description": "CryptPad on turvallinen, päästä päähän salattu yhteistyöalusta. Sen avulla tiimisi voi luoda ja yhtäaikaisesti muokata dokumentteja sekä jakaa tiedostoja turvallisesti. Tässä Deploy App-palvelimessa on sinun tiimisi oma, hajautettu Cryptpad-palvelu.",
+        "title": "Tervetuloa CryptPadiin!"
+      },
+      "whatIs": {
+        "description": "CryptPad varmistaa turvallisuuden siten, että edes palvelimen ylläpitäjä ei voi lukea tiedostojasi. Sinä päätät, kenelle jaat tiedostot. Myös muut tämän Deploy App-palvelimen käyttäjät tarvitsevat sinulta kutsun, jotta he voivat lukea tiedostojasi.",
+        "title": "Miksi Cryptpad on turvallinen?"
+      }
+    },
+    "title": "Mikä on CryptPad?"
+  }
+}

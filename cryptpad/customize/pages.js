@@ -1,0 +1,209 @@
+// SPDX-FileCopyrightText: 2023 XWiki CryptPad Team <contact@cryptpad.org> and contributors
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+define([
+    '/common/hyperscript.js',
+    '/common/common-language.js',
+    '/common/common-util.js',
+    '/customize/application_config.js',
+    '/customize/messages.js',
+    'jquery',
+    '/api/config',
+    '/common/extensions.js',
+    'optional!/api/instance',
+    '/common/common-icons.js',
+], function (h, Language, Util, AppConfig, Msg, $, ApiConfig,
+            Extensions, Instance, Icons) {
+    var Pages = {};
+
+    Pages.setHTML = function (e, html) {
+        e.innerHTML = html;
+        return e;
+    };
+
+    Pages.externalLink = function (el, href) {
+        if (!el) { return el; }
+        el.setAttribute("rel", "noopener noreferrer");
+        el.setAttribute("target", "_blank");
+        if (typeof(href) === 'string') {
+            el.setAttribute("href", href);
+        }
+        return el;
+    };
+
+    var documentedLanguages = ['en', 'fr', 'de'];
+    Pages.localizeDocsLink = function (href) {
+        try {
+            var lang = Msg._getLanguage();
+            if (documentedLanguages.indexOf(lang) > 0) {
+                return href.replace('/en/', '/' + lang + '/');
+            }
+        } catch (err) {
+            console.error(err);
+        }
+        return href;
+    };
+
+    Pages.documentationLink = function (el, href) {
+        return Pages.externalLink(el, Pages.localizeDocsLink(href));
+    };
+
+    Pages.accounts = {
+        donateURL: AppConfig.donateURL || "https://opencollective.com/cryptpad/",
+    };
+
+    var languageSelector = function () {
+        var languages = Msg._languages;
+        var selected = Msg._languageUsed;
+        var keys = Object.keys(languages).sort();
+        var options = keys.map(function (l) {
+            var attr = { value: l };
+            if (selected === l) { attr.selected = 'selected'; }
+            return h('option', attr, languages[l]);
+        });
+        var select = h('select', { 'aria-label': Msg.selectLanguage }, options);
+        $(select).change(function () {
+            Language.setLanguage($(select).val() || '', null, function () {
+                window.location.reload();
+            });
+        });
+        return select;
+    };
+
+    var footLink = function (ref, loc, text, icon) {
+        if (!ref) { return; }
+        var attrs =  {
+            href: ref,
+            role: 'button',
+        };
+        if (!/^\//.test(ref)) {
+            attrs.target = '_blank';
+            attrs.rel = 'noopener noreferrer';
+        }
+        if (loc) {
+            attrs['data-localization'] =  loc;
+            text = Msg[loc];
+        }
+        if (icon) {
+            icon = Icons.get(icon);
+        }
+        return h('a', attrs, [icon, text]);
+    };
+
+    let urlArgs = ApiConfig.requireConf && ApiConfig.requireConf.urlArgs;
+    Pages.versionString = Util.getVersionFromUrlArgs(urlArgs);
+
+    var customURLs = Pages.customURLs = {};
+    (function () {
+        var defaultURLs = {
+            source: 'https://github.com/cryptpad/cryptpad',
+        };
+        var l = Msg._getLanguage();
+        ['imprint', 'privacy', 'terms', 'status', 'roadmap', 'source'].forEach(function (k) {
+            var value = AppConfig[k];
+            if (value === false) { return; }
+            if (value === true) {
+                customURLs[k] = defaultURLs[k];
+                return;
+            }
+            if (typeof(value) === 'string') {
+                customURLs[k] = value;
+                return;
+            }
+            if (typeof(value) === 'object') {
+                customURLs[k] = value[l] || value['default'];
+            }
+        });
+        var value = AppConfig.hostDescription;
+        Pages.hostDescription = (value && (value[l] || value.default)) ||  Msg.home_host;
+
+        Pages.Instance = {};
+        Object.keys(Instance).forEach(function (k) {
+            var value = Instance[k];
+            Pages.Instance[k] = value[l] || value.default || undefined;
+        });
+
+        var name;
+        try {
+            name = Pages.Instance.name || new URL('/', ApiConfig.httpUnsafeOrigin).host;
+        } catch (err) {
+            name = 'CryptPad';
+        }
+        Pages.Instance.name = name;
+        Pages.Instance.description = Pages.Instance.description || Msg.main_catch_phrase;
+    }());
+
+    Pages.imprintLink = footLink(customURLs.imprint, 'imprint');
+    Pages.privacyLink = footLink(customURLs.privacy, 'privacy');
+    Pages.termsLink = footLink(customURLs.terms, 'terms');
+    Pages.sourceLink = footLink(customURLs.source, 'footer_source');
+    Pages.docsLink = footLink('https://docs.cryptpad.org', 'docs_link');
+    Pages.roadmapLink = footLink(customURLs.roadmap, 'footer_roadmap');
+
+    Pages.infopageFooter = function () {
+        return h('footer.cp-footer', []);
+    };
+
+    Pages.infopageTopbar = function () {
+        var rightLinks;
+        var username = window.localStorage.getItem('User_name');
+        var registerLink;
+
+        if (!ApiConfig.restrictRegistration) {
+            registerLink = h('a.nav-item.nav-link.cp-register-btn', { href: '/register/', role: 'button'}, [
+                Icons.get('user-account'),
+                Msg.login_register
+            ]);
+        }
+
+        if (username === null) {
+            rightLinks = [
+                h('a.nav-item.nav-link.cp-login-btn', { href: '/login/', role: 'button'}, [
+                    Icons.get('login'),
+                    Msg.login_login
+                ]),
+                registerLink,
+            ];
+        } else {
+            rightLinks = h('a.nav-item.nav-link.cp-user-btn', { href: '/drive/', role: 'button'}, [
+                Icons.get('user-profile'),
+                " ",
+                username
+            ]);
+        }
+
+        var isHome = ['/', '/index.html'].includes(window.location.pathname);
+        var homeLink = h('a.nav-item.nav-link.cp-back-home' /* .navbar-brand */, { href: '/index.html', role: 'button'}, [
+            Icons.get('chevron-left'),
+            h('img', {
+                src: '/customize/CryptPad_logo.svg',
+                "aria-hidden": true,
+                alt: ''
+            }),
+            Msg.homePage
+        ]);
+
+        let pricingName = Msg.features;
+        Extensions.getExtensionsSync('PRICING_NAME').some(ext => {
+            if (!ext.name) { return; }
+            pricingName = ext.name;
+            return true;
+        });
+
+        return h('nav.navbar.navbar-expand-lg',
+            [
+                !isHome? homeLink: undefined,
+                h('a.nav-item.nav-link', { href: '/features.html', role: 'button'}, [
+                    Icons.get('properties'),
+                    pricingName
+                ]),
+                h('a.nav-item.nav-link', { href: 'https://docs.cryptpad.org'}, [
+                    Icons.get('documentation'),
+                    Msg.docs_link]),
+            ].concat(rightLinks)
+        );
+    };
+
+    return Pages;
+});

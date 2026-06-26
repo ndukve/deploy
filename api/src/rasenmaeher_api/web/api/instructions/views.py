@@ -1,0 +1,120 @@
+"""Instruction routes"""
+
+from typing import cast, Optional
+import logging
+
+from fastapi import Depends, APIRouter, Request, HTTPException
+from libpvarki.schemas.product import UserCRUDRequest, UserInstructionFragment
+from libpvarki.middleware import MTLSHeader
+
+from .schema import (
+    AllProductsInstructionFragments,
+    ProductFileList,
+    AllProductsInstructionFiles,
+    InstructionData,
+    ProductData,
+)
+from ..middleware.user import ValidUser
+from ....productapihelpers import get_from_all_products, post_to_all_products, post_to_product
+from ....db import Person
+
+LOGGER = logging.getLogger(__name__)
+router = APIRouter()
+router_v2 = APIRouter()
+router_v2_admin = APIRouter(dependencies=[Depends(MTLSHeader(auto_error=True))])
+
+
+@router.get(
+    "/admin",
+    response_model=AllProductsInstructionFragments,
+    dependencies=[Depends(ValidUser(auto_error=True))],
+    deprecated=True,
+)
+async def admin_instruction_fragment() -> AllProductsInstructionFragments:
+    """Return admin instructions"""
+    responses = await get_from_all_products("api/v1/admins/fragment", UserInstructionFragment)
+    if responses is None:
+        raise ValueError("Everything is broken")
+    return AllProductsInstructionFragments(
+        fragments={key: cast(UserInstructionFragment, val) for key, val in responses.items()}
+    )
+
+
+@router.get(
+    "/user",
+    response_model=AllProductsInstructionFiles,
+    dependencies=[Depends(ValidUser(auto_error=True))],
+    deprecated=True,
+)
+async def user_instruction_fragment(request: Request) -> AllProductsInstructionFiles:
+    """Return end-user files"""
+    person = cast(Person, request.state.person)
+    user = UserCRUDRequest(
+        uuid=str(person.pk), callsign=person.callsign, x509cert=person.certfile.read_text(encoding="utf-8")
+    )
+    LOGGER.debug("person={}, user={}".format(person, user))
+    responses = await post_to_all_products("api/v1/clients/fragment", user.model_dump(), ProductFileList)
+    if responses is None:
+        raise ValueError("Everything is broken")
+    return AllProductsInstructionFiles(files={key: cast(ProductFileList, val) for key, val in responses.items()})
+
+
+@router.get(
+    "/{product}/{language}",
+    dependencies=[Depends(ValidUser(auto_error=True))],
+    response_model=InstructionData,
+)
+async def get_product_instructions(request: Request, product: str, language: str) -> Optional[InstructionData]:
+    """Get instructions JSON for given product and language"""
+    person = cast(Person, request.state.person)
+    user = UserCRUDRequest(
+        uuid=str(person.pk), callsign=person.callsign, x509cert=person.certfile.read_text(encoding="utf-8")
+    )
+    endpoint_url = f"api/v1/instructions/{language}"
+    response = await post_to_product(product, endpoint_url, user.model_dump(), InstructionData)
+    if response is None:
+        _reason = f"Unable to get instructions for {product}"
+        LOGGER.error("{} : {}".format(request.url, _reason))
+        raise HTTPException(status_code=404, detail=_reason)
+    response = cast(InstructionData, response)
+    return response
+
+
+@router_v2.get(
+    "/data/{product}",
+    dependencies=[Depends(ValidUser(auto_error=True))],
+)
+async def get_product_data(request: Request, product: str) -> Optional[ProductData]:
+    """Get component data"""
+    person = cast(Person, request.state.person)
+    user = UserCRUDRequest(
+        uuid=str(person.pk), callsign=person.callsign, x509cert=person.certfile.read_text(encoding="utf-8")
+    )
+    endpoint_url = "api/v2/clients/data"
+    response = await post_to_product(product, endpoint_url, user.model_dump(), ProductData)
+    if response is None:
+        _reason = f"Unable to get data for {product}"
+        LOGGER.error("{} : {}".format(request.url, _reason))
+        raise HTTPException(status_code=404, detail=_reason)
+    response = cast(ProductData, response)
+    return response
+
+
+@router_v2_admin.get(
+    "/data/{product}",
+    dependencies=[Depends(ValidUser(auto_error=True, require_roles=["admin"]))],
+)
+async def get_admin_product_data(request: Request, product: str) -> Optional[ProductData]:
+    """Get component data"""
+    person = cast(Person, request.state.person)
+    user = UserCRUDRequest(
+        uuid=str(person.pk), callsign=person.callsign, x509cert=person.certfile.read_text(encoding="utf-8")
+    )
+    endpoint_url = "api/v2/admin/clients/data"
+    response = await post_to_product(product, endpoint_url, user.model_dump(), ProductData)
+    if response is None:
+        _reason = f"Unable to get data for {product}"
+        LOGGER.error("{} : {}".format(request.url, _reason))
+        raise HTTPException(status_code=404, detail=_reason)
+    response = cast(ProductData, response)
+    return response

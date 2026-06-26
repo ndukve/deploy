@@ -1,0 +1,47 @@
+x-raesenmaeher_dbconfig_env: &rmmtxdbconfig_env
+  RMMTX_DATABASE_NAME: &rmmtxdbname rmmtxauthz
+  RMMTX_DATABASE_HOST: postgres
+  RMMTX_DATABASE_USER: &rmmtxdbuser rmmtxauthz
+  RMMTX_DATABASE_PASSWORD: &rmmtxdbpass rmmtxauthztestpwd # pragma: allowlist secret
+
+x-postgres_env: &postgres_env
+  POSTGRES_PASSWORD: "FIXME: change to long random" # pragma: allowlist secret
+  RMMTX_PASSWORD: *rmmtxdbpass # pragma: allowlist secret
+
+services:
+  postgres:
+    image: ${HUB_DOCKER_REPO:-docker.io/}postgres:12
+    volumes:
+      - ./pg_init:/docker-entrypoint-initdb.d
+      - pg_data:/var/lib/postgresql/data
+    networks:
+      - intranet
+    ports:
+      - "5742:5432"
+    environment:
+      <<: *postgres_env
+    healthcheck:
+      test: "pg_isready --dbname=$$POSTGRES_DB --username=$$POSTGRES_USER || exit 1"
+      interval: 5s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+  mediamtx:
+    image: ${HUB_DOCKER_REPO:-docker.io/}bluenviron/mediamtx:1.12.3
+    networks:
+      - intranet
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./mediamtx.yml:/mediamtx.yml
+    environment:
+      MTX_RTSPTRANSPORTS: "tcp" # Can't do UDP without host mode network
+    ports:
+      - "19997:9997" # Control API
+
+networks:
+  intranet:
+
+volumes:
+  pg_data:

@@ -1,0 +1,430 @@
+{
+  "intro": {
+    "description": "TAK (Team Awareness Kit): GPS-pohjainen alusta reaaliaikaiseen omien joukkojen seurantaan, havaintojen jakamiseen ja tilannepäivitysten vastaanottamiseen.",
+    "title": "TAK"
+  },
+  "loading": {
+    "user_data": "Ladataan käyttäjän tietoja..."
+  },
+  "onboarding": {
+    "android": {
+      "downloadFromPlayStore": "Lataa Google Play:stä",
+      "steps": {
+        "tak-auto-import": {
+          "description": "Yhdistä palvelimeen painamalla kuvan mukaisia painikkeita. Varmista, että ATAK avaa ponnahdusikkunan ja valitse siinä \"Yes\".\n\nJos ATAK ei avaa ponnahdusikkunaa, yritä uudelleen.",
+          "title": "Automaattinen tuonti"
+        },
+        "tak-data-sync": {
+          "description": "Sinun tulee ottaa käyttöön Data Sync lisäosa, saadaksesi ATAK käyttöön",
+          "title": "Data Sync"
+        },
+        "tak-download": {
+          "description": "Lataa ATAK-CIV-sovellus laitteellesi: ",
+          "title": "Lataus"
+        },
+        "tak-home": {
+          "description": "ATAK:ista löydät näkymiä eri tarpeisiisi. Messages välilehdellä voit viestitellä tiimisi kanssa. Feeds-näkymä auttaa seuraamaan liikettä ja tapahtumia yhdellä silmäyksellä. Tools-valikosta löydät kaikki muut ominaisuudet. Alakulman Status-kuvake kertoo onko ATAK-sovelluksessi toimintakunnossa.",
+          "title": "ATAK:in työkalut"
+        },
+        "tak-manual-import": {
+          "description": "Voit myös tuoda määrityspaketin manuaalisesti.",
+          "title": "Manuaalinen tuonti"
+        },
+        "tak-plugins": {
+          "description": "Tools-valikosta löydät Plugins välilehden",
+          "title": "ATAK Plugins (lisäosat)"
+        },
+        "tak-welcome": {
+          "description": "Tervetuloa ATAK:in asennukseen",
+          "title": "Tervetuloa"
+        }
+      }
+    },
+    "back": "Takaisin",
+    "clickToEnlarge": "Klikkaa suurentaaksesi",
+    "completion": "Käyttöönotto valmis!",
+    "completionDesc": "Kaikki on valmista ja voit nyt toimia täydellä kapasiteetilla.",
+    "finish": "Lopeta",
+    "general": {
+      "steps": {
+        "install": {
+          "description": "Muista valita käyttämäsi alusta (1), jos sitä ei tunnisteta oikein. Kun olet ladannut paketin (2) ja tuonut sen, olet valmis aloittamaan!",
+          "title": "Paketin lataus"
+        },
+        "return": {
+          "description": "Voit aina avata tämän oppaan uudelleen painamalla painiketta oikeassa alakulmassa.",
+          "title": "Oppaan avaaminen"
+        },
+        "welcome": {
+          "description": "Tervetuloa TAK-järjestelmään!",
+          "title": "Tervetuloa"
+        }
+      }
+    },
+    "imageMissing": "Kuvaa ei ole saatavilla",
+    "ios": {
+      "downloadFromAppStore": "Lataa App Storesta",
+      "steps": {
+        "itak-import": {
+          "description": "Avaa \"Packages\"-valikko ja lisää uusi paketti paikallisesta laitteesta. Valitse tiedosto, jonka latasit aiemmin.",
+          "title": "Tuo paketti"
+        },
+        "itak-settings": {
+          "description": "Asetukset löytyvät oikeasta yläkulmasta. Sieltä voit vaihtaa karttaa ja mieltymysasetuksia. Suositus: Muuta mieltymysasetuksista (preferences) yksiköt käyttämään MGRS-koordinaatteja ja metrisiä yksiköitä.",
+          "title": "Muuta asetuksia"
+        },
+        "itak-setup": {
+          "description": "Avaa iTAK. Kun sovellus pyytää lupaa käyttää paikallisen verkon laitteita, älä salli sitä. SALLI kaikki muut luvat. Aseta kutsunimesi (callsign) vastaamaan Deploy App -sovelluksessa olevaa nimeä.",
+          "title": "iTAK-asennus"
+        },
+        "itak-sync1": {
+          "description": "Avaa \"Data Sync\"-valikko ja tilaa \"RECON\"-syöte.",
+          "title": "Data Sync (1/2)"
+        },
+        "itak-sync2": {
+          "description": "Palaa \"Data Sync\"-valikkoon ja suorita täysi synkronointi.",
+          "title": "Data Sync (2/2)"
+        },
+        "tak-download": {
+          "description": "Lataa iTAK-sovellus App Storesta ja asenna se:",
+          "title": "Lataa"
+        },
+        "tak-package": {
+          "description": "Varmista, että alustasi on valittu oikein. Lataa sen jälkeen pakettisi.",
+          "title": "Paketin lataus"
+        },
+        "welcome": {
+          "description": "Tervetuloa iTAK-asennukseen",
+          "title": "Tervetuloa"
+        }
+      }
+    },
+    "next": "Next",
+    "of": "/",
+    "progressSaved": "Your onboarding progress has been saved.",
+    "review": "Review onboarding",
+    "step": "Vaihe",
+    "title": "Onboard to TAK",
+    "windows": {
+      "back": "Back",
+      "clickToEnlarge": "Click to enlarge",
+      "completion": "Onboarding Completed!",
+      "completionDesc": "You're all set and ready to operate at full capacity.",
+      "finish": "Finish",
+      "imageMissing": "Image not available",
+      "next": "Next",
+      "of": "of",
+      "progressSaved": "Your onboarding progress has been saved.",
+      "review": "Review onboarding",
+      "step": "Step",
+      "steps": {
+        "health": {
+          "description": "See how everything's running at a glance. Check if your systems are healthy and your network is connected.",
+          "title": "System Status"
+        },
+        "instructions": {
+          "description": "Need help getting started? Find step-by-step guides and tips for making the most of Modular Apps.",
+          "title": "Help & Guides"
+        },
+        "invite": {
+          "description": "Bring new people onto your team with secure invite codes or QR codes. Share them however works best for you.",
+          "title": "Invite People"
+        },
+        "products": {
+          "description": "Launch the Team Awareness Kit and other apps you need. Everything's ready to go when you are.",
+          "title": "Your Apps"
+        },
+        "users": {
+          "description": "See who's on your team, approve new members, and manage everyone's access. Keep things secure and organized.",
+          "title": "Team Members"
+        },
+        "welcome": {
+          "description": "This is your home base for managing everything. Launch apps, check system status, and keep your team organized—all in one place.",
+          "title": "Welcome!"
+        }
+      },
+      "title": "Onboard to Deploy App"
+    },
+    "wintak": {
+      "description": "Valitse käyttämäsi alusta (1), jos sitä ei tunnisteta oikein. Lataa pakettisi (2). Lue paketin tuomista koskevat ohjeet (3)."
+    }
+  },
+  "platform": {
+    "android": "ATAK",
+    "choose": "Valitse alusta",
+    "ios": "iTAK",
+    "select_placeholder": "Valitse alusta",
+    "tracker": "TAK Tracker",
+    "windows": "WinTAK"
+  },
+  "tabs": {
+    "android": {
+      "instructions_short": "Tarvitsetko apua paketin tuonnissa?",
+      "open_atak": "ATAK: Tuo paketti automaattisesti",
+      "open_atak_dialog": {
+        "description": "Avaa ATAK painamalla alla olevaa painiketta",
+        "note": "Kun ATAK avautuu ja kysyy pitkän linkin sisältävän paketin tuonnista, valitse \"Kyllä\"",
+        "open": "Avaa ATAK ja yhdistä palveluun",
+        "title": "ATAK-tehtäväpaketin automaattinen tuonti"
+      },
+      "open_atak_manual_note": "Tai tuo paketti manuaalisesti",
+      "open_instructions": "Avaa ohjeet",
+      "phase1": {
+        "step1_desc_civ": "Lataa ATAK-CIV -sovellus Play Kaupasta ja asenna se:",
+        "step1_desc_sync": "Lataa ATAK Data Sync -Laajennus ja asenna se:",
+        "step1_title": "Lataa sovellukset",
+        "step2_desc_error": "Jos sovellus antaa virheilmoituksen, valitse \"Wait\" (Odota).",
+        "step2_desc_permissions": "Avaa sovellus ja myönnä kaikki pyydetyt käyttöoikeudet.",
+        "step2_title": "Avaa ATAK-sovellus ja myönnä luvat"
+      },
+      "phase2": {
+        "step1_desc_1": "Kun avaat TAK-sovelluksen ensimmäistä kertaa, TAK Device Setup (Laitteen asennus) aukeaa.",
+        "step1_desc_2": "Valitse <bold>Data Package</bold> (Datapaketti) jatkaaksesi.",
+        "step1_desc_3": "Valitse Datapaketti -valikko aukeaa.",
+        "step1_title": "1. Avaa Datapaketti-valikko",
+        "step2_desc_1": "Etsi kansio, johon latasit asiakas-pakettitiedoston <bold>'Nimi.zip'</bold>.",
+        "step2_desc_2": "Vinkki: Paina <bold>Date</bold> (Päivämäärä) nähdäksesi viimeisimmän ladatun tiedoston; se on todennäköisesti pakettisi.",
+        "step2_desc_3": "Valitse tiedosto jatkaaksesi.",
+        "step2_title": "2. Etsi ja valitse zip-tiedosto",
+        "step3_desc_1": "Paina <bold>Done</bold> (Valmis).",
+        "step3_desc_2": "Saat useita ilmoituksia asetustiedostojen latautumisesta.",
+        "step3_desc_3": "Alustava konfigurointi on valmis.",
+        "step3_desc_4": "Tarkista oikeasta alakulmasta, että palvelinyhteytesi on aktiivinen (vihreä valo).",
+        "step3_title": "3. Paina Done - asetukset latautuvat"
+      },
+      "phase3": {
+        "step1_desc_1": "Paina kolmea viivaa (hampurilaiskuvake) oikeassa yläkulmassa.",
+        "step1_desc_2": "Vieritä valikon alaosaan ja valitse <bold>Settings</bold> (Asetukset).",
+        "step1_title": "1. Avaa Asetukset",
+        "step2_desc_1": "Valitse <bold>My Team</bold> (Oma tiimi) ja valitse väri, jota sinua on ohjeistettu käyttämään.",
+        "step2_desc_2": "Valitse <bold>My Role</bold> (Oma rooli). Ellei esimiehesi toisin määrää, kaikkien komentopaikkakäyttäjien tulisi käyttää roolia <bold>Team Member</bold> (Tiimin jäsen).",
+        "step2_desc_3": "Roolisi ja tiimisi on nyt asetettu.",
+        "step2_title": "2. Aseta Tiimi ja Rooli"
+      },
+      "phase4": {
+        "step1_desc_1": "a. Avaa päänäkymässä hampurilaisvalikko ja etsi <bold>Plugins</bold> (Laajennukset). (Sinulla on oltava Data Sync -laajennus asennettuna Google Playsta.)",
+        "step1_desc_2": "b. Laajennukset-valikko aukeaa. Paina riviä <bold>Data Sync</bold>, kohdasta jossa lukee <bold>\"Status: Not loaded.\"</bold>",
+        "step1_desc_3": "c. Sovellus kysyy, haluatko ladata Data Syncin. Paina <bold>Load</bold> (Lataa).",
+        "step1_desc_4": "d. Data Syncin tilaksi vaihtuu <bold>Loaded</bold> (Ladattu).",
+        "step1_desc_5": "Valmis! Voit poistua valikosta.",
+        "step1_title": "1. Avaa Data Sync -valikko",
+        "step2_desc_1": "Avaa päänäkymässä hampurilaisvalikko ja valitse <bold>Data Sync</bold>.",
+        "step2_desc_2": "Data Sync -valikon avaaminen paljastaa palvelimelta saatavilla olevat syötteet.",
+        "step2_desc_3": "Valitse syöte/syötteet, jotka sinua on ohjeistettu tilaamaan (esimerkki: <bold>RECON</bold>).",
+        "step2_desc_4": "Valitse ponnahdusikkunasta <bold>Download & Sync</bold> (Lataa & Synkronoi).",
+        "step2_desc_5": "Tiedustelusyöte (Recon) on nyt käytössä. Saat kartallesi merkintöjä komentopaikalta.",
+        "step2_title": "2. Ota käyttöön Tiedustelusyöte & muut syötteet",
+        "step3_desc_1": "Varmista, että <bold>Auto Download</bold> on päällä. Palaa päänäkymään ja avaa hampurilaisvalikko.",
+        "step3_desc_2": "Etsi <bold>Settings</bold> (Asetukset).",
+        "step3_desc_3": "Etsi asetus <bold>Auto Download Updates</bold> ja varmista, että se on kytketty päälle.",
+        "step3_desc_4": "Tämä varmistaa, että ATAK lataa päivitykset tilaamiisi syötteisiin automaattisesti.",
+        "step3_title": "3. Kytke automaattinen lataus päälle"
+      },
+      "phase5": {
+        "step1_desc_1": "Valitaksesi karttapohjan, avaa <bold>Maps</bold> (Kartat) työkaluriviltä (oikea yläkulma).",
+        "step1_desc_2": "Kuittaa mahdolliset ilmoitukset painamalla <bold>OK</bold>.",
+        "step1_desc_3": "Valitse <bold>Mobile</bold> -välilehti ja aktivoi <bold>02 Google Hybrid</bold> -karttapohja.",
+        "step1_desc_4": "Poistu valikosta painamalla <bold>Back</bold> (Takaisin) -painiketta muutaman kerran.",
+        "step1_title": "1. Valitse haluamasi karttapohja",
+        "step2_desc_1": "ATAKissa yksikköasetukset on yleensä esikonfiguroitu asentamassasi asiakaspaketissa. Tarkista tai säädä niitä seuraavasti:",
+        "step2_desc_2_1": "Palaa <bold>Settings</bold> (Asetukset) -päävalikkoon.",
+        "step2_desc_2_2": "Valitse <italic>Display Preferences</italic> (Näyttöasetukset).",
+        "step2_desc_2_3": "Valitse <italic>Basic Display Preferences</italic> (Perusnäyttöasetukset).",
+        "step2_desc_2_4": "Valitse <italic>Unit Display Format Preferences</italic> (Yksiköiden näyttömuotoasetukset).",
+        "step2_desc_2_5": "Valitse <bold>Altitude Units</bold> (Korkeusyksiköt) ja aseta arvoksi <bold>Meters (m)</bold>.",
+        "step2_desc_2_6": "Valitse <bold>Speed Units</bold> (Nopeusyksiköt) ja valitse <bold>KM per Hour (kmph)</bold>.",
+        "step2_desc_2_7": "Vieritä kohtaan <bold>UNIT THRESHOLD</bold>, valitse <bold>Meters to Kilometers</bold>, aseta arvoksi <bold>1000</bold>, ja paina <bold>OK</bold>.",
+        "step2_desc_3": "Yksiköt on nyt asetettu. Poistu valikosta painamalla takaisin-painiketta useita kertoja.",
+        "step2_title": "2. Tarkista yksiköt tarvittaessa",
+        "step3_desc_1": "Kutsumanimesi on yleensä asetettu asentamassasi asiakaspaketissa. Vaihtaaksesi sen:",
+        "step3_desc_2_1": "Valitse <bold>Callsign and Device Preferences</bold> (Kutsumanimi- ja laiteasetukset).",
+        "step3_desc_2_2": "Valitse <bold>Callsign Preferences</bold> (Kutsuminimiasetukset).",
+        "step3_desc_2_3": "Valitse <bold>My Callsign</bold> (Oma kutsumanimi).",
+        "step3_desc_2_4": "Syötä sinulle määrätty kutsumanimi (esimerkki: <bold>Rambo</bold>).",
+        "step3_desc_2_5": "Paina <bold>OK</bold>.",
+        "step3_title": "3. Tarkista ja vaihda kutsumanimi tarvittaessa"
+      },
+      "step1_download": "Lataa zip-paketti:",
+      "step2_install": "Tuo paketti sovellukseen.",
+      "step3_done": "ATAK on käyttövalmis.",
+      "title": "ATAK-paketin asennus",
+      "wizard_title": {
+        "phase1": "Asenna Android-sovellukset",
+        "phase2": "Tuo datapaketti",
+        "phase3": "Säädä asetukset",
+        "phase4": "Data Sync",
+        "phase5": "Viimeistely"
+      }
+    },
+    "ios": {
+      "instructions_short": "Tarvitsetko apua paketin tuonnissa?",
+      "open_instructions": "Avaa ohjeet",
+      "phase1": {
+        "download_client_package": "Lataa asiakaspaketti",
+        "step1_desc_1": "Lataa iTAK-sovellus App Storesta ja asenna se.",
+        "step1_desc_2": "Paina alla olevaa painiketta ladataksesi sovelluksen.",
+        "step1_desc_title": "Lataa iTAK",
+        "step1_title": "1. Lataa sovellukset",
+        "step2_desc_1": "Lataa asiakaspakettisi painamalla alla olevaa vihreää painiketta.",
+        "step2_desc_2": "Löydät saman painikkeen myös etusivulta.",
+        "step2_desc_title": "Lataa asiakaspaketti",
+        "step2_title": "2. Lataa asiakaspaketti",
+        "zip_file_warning": "HUOM! Zip-tiedostoa ei tarvitse purkaa!"
+      },
+      "phase2": {
+        "step1_desc_1": "Avaa iTAK-sovellus.",
+        "step1_desc_2": "Kun sovellus kysyy: \"iTAK haluaa löytää ja yhdistää laitteisiin paikallisverkossasi...\", valitse Älä salli.",
+        "step1_title": "Avaa sovellus",
+        "step2_desc_1": "Täytä profiilin asetukset:",
+        "step2_desc_2": "Syötä kutsunimesi 'Kutsunimi'-kenttään, esimerkiksi Rambo. Älä täytä Puhelin-kenttää. Paina lopuksi Seuraava.",
+        "step2_title": "Syötä kutsunimi",
+        "step3_desc_1": "Täytä tiimin asetukset:",
+        "step3_desc_2": "Valitse 'Valitse tiimi' -kentästä tiimisi (kuten sinulle on ohjeistettu) väri pudotusvalikosta. Valitse 'Valitse tiimin rooli' -kentästä rooli 'Tiimin jäsen', ellei toisin ole ohjeistettu.\nPäämajakäyttäjät asettavat roolinsa päämajaksi.\nPaina lopuksi Seuraava.",
+        "step3_title": "Aseta tiimin asetukset",
+        "step4_desc_1": "a. Aseta tietosuoja-asetukset sallimaan ilmoitukset ja sijaintipalvelut.",
+        "step4_desc_2": "iOS kysyy sitten, sallitko iTAK:lle ilmoitukset ja sijaintisi käytön. Valitse Salli ilmoitukset.",
+        "step4_desc_3": "Valitse Salli sovelluksen käytön aikana sijainnille.",
+        "step4_desc_4": "Tämän jälkeen siirrytään luomaan palvelinyhteys asiakaspaketillasi.",
+        "step4_title": "Anna sovellukselle tarvittavat käyttöoikeudet"
+      },
+      "phase3": {
+        "step1_desc_1": "a. Mene karttanäkymään ja vieritä työkalupalkkia oikealle, kunnes löydät Paketti-kuvakkeen.",
+        "step1_important": "Tärkeää! Älä yritä asentaa asiakaspakettia iTAK Asetukset->Verkko->Palvelin!-valikosta. Se ei toimi.",
+        "step1_title": "Avaa Paketit-valikko",
+        "step2_desc_1": "b. Paketti-valikko avautuu ja se on tyhjä. Paina alareunassa olevaa plus-kuvaketta lisätäksesi viestipohjapaketti.",
+        "step2_desc_2": "c. Valitse Paikallinen laite.",
+        "step2_desc_3": "d. Valitse pakettisi. Se on zip-tiedosto nimeltä YourCallsign.zip.",
+        "step2_desc_4": "e. Onnistuneen lisäyksen merkkinä Paketit-valikon listalla näkyy palvelimen kutsunimi ja vihreä valo. Palaa karttanäkymään.",
+        "step2_desc_5": "Palvelinyhteys on nyt luotu. Merkkinä tästä kartan oikeassa alakulmassa lukee Yhteydessä vihreänä.",
+        "step2_title": "Lisää viestipohjapaketti iTAK:iin"
+      },
+      "phase4": {
+        "step1_desc_1": "a. Avaa Asetukset uudelleen ylävasemmassa kulmassa olevasta hammasrataskuvakkeesta.",
+        "step1_desc_2": "b. Valitse Asetuksista Asetukset-vaihtoehto.",
+        "step1_desc_3": "Valmistaudu asettamaan oikeat mittayksiköt ja koordinaattijärjestelmä.",
+        "step1_title": "Avaa asetukset",
+        "step2_desc_1": "Valitse mittayksiköt:",
+        "step2_desc_2": "Valitse MGRS koordinaattimuodoksi ja Metrit etäisyysmuodoksi.",
+        "step2_title": "Aseta yksiköt",
+        "step3_desc_1": "a. Jos haluat vaihtaa kartan lähteen, valitse Kartan lähde Asetuksista.",
+        "step3_desc_2": "b. Valitse haluamasi kartan lähde. Huom! Saatavuus voi vaihdella.",
+        "step3_desc_3": "Hienoa! Olet nyt valmistanut iTAK:in käyttöön.\nJos tarvitset kutsunimesi muokkaamista, voit tehdä sen Asetukset-valikosta valitsemalla kutsunimesi.",
+        "step3_title": "Vaihtoehtoisesti muuta kartan lähde"
+      },
+      "phase5": {
+        "step1_desc_1": "Päävalikossa avaa työkalupalkki (alareunassa) ja vieritä oikealle löytääksesi Tiedonsiirron synkronointi -valikon.",
+        "step1_title": "Avaa tiedonsiirron synkronointi -valikko",
+        "step2_desc_1": "Tiedonsiirron synkronointi -valikossa, paina Tilaa-painiketta.",
+        "step2_desc_2": "Valitse saatavilla oleva palvelin (tulee näkyviin suorituspaikkasi nimi, kuten 'positive-beetle.').",
+        "step2_desc_3": "Seuraavassa näkymässä valitse RECON-syöte ja muut syötteet, joihin sinut on ohjeistettu tilaamaan.",
+        "step2_title": "Tilaa syöte",
+        "step3_desc_1": "Tästä eteenpäin Command Postin käyttäjien luoma ja päivittämä Recon-syöte on käytettävissäsi.",
+        "step3_desc_2": "Syöte näkyy Tiedonsiirron synkronointi -valikossasi. Ohjeet syötteen käytöstä löytyvät ryhmän käytön ohjeista.",
+        "step3_title": "Syöte käytettävissäsi"
+      },
+      "step1_download": "Lataa zip-paketti:",
+      "step2_install": "Tuo paketti.",
+      "step3_done": "Valmis, ITAK on valmis käyttöön.",
+      "title": "ITAK-paketin asennus",
+      "wizard_title": {
+        "phase1": "Asenna iOS-sovellukset",
+        "phase2": "Tee perusasetukset",
+        "phase3": "Yhdistä palvelimeen",
+        "phase4": "Aseta yksiköt",
+        "phase5": "Ota tiedonsynkronointi käyttöön"
+      }
+    },
+    "tracker": {
+      "step1_download": "Lataa zip-paketti:",
+      "step2_install": "Tuo paketti.",
+      "step3_done": "Valmis, TAK Tracker on valmis käyttöön.",
+      "title": "TAK Tracker -paketin asennus"
+    },
+    "windows": {
+      "instructions_short": "Tarvitsetko apua paketin tuonnissa?",
+      "open_instructions": "Avaa ohjeet",
+      "phase1": {
+        "step1_desc_1": "WinTAK vaatii työaseman kielen olevan englanti ja alueasetukseksi Yhdysvallat.",
+        "step1_desc_2": "Ennen sovelluksen asentamista etsi Aika ja kieli -asetukset hakupalkista (vasemmasta alakulmasta).",
+        "step1_desc_3": "Aloita alueen asetuksen muuttaminen. Valitse Alue Aika ja kieli -valikon sivupalkista.",
+        "step1_desc_4": "Valitse Yhdysvallat maaksi tai alueeksi. Varmista, että alueellinen formaatti on myös asetettu englanniksi (Yhdysvallat).",
+        "step1_title": "1. Aseta alueeksi Yhdysvallat",
+        "step2_desc_1": "Valitse Aika ja kieli -valikon sivupalkista Kieli.",
+        "step2_desc_2": "Aseta Windowsin näyttökieleksi Englanti (Yhdysvallat).",
+        "step2_desc_3": "Viimeistele kieliasetusten muuttaminen kirjautumalla ulos ja takaisin sisään.",
+        "step2_title": "2. Aseta kieli Englanti (Yhdysvallat)",
+        "step3_desc_1": "Jos englanti ei ole saatavilla näyttökielenä, paina Lisää kieli ja etsi se.",
+        "step3_desc_2": "Paina Asenna kielipaketti. Odota, että kielipaketti asennetaan.",
+        "step3_desc_3": "Sen jälkeen voit valita englannin näyttökieleksi kuten vaiheessa 2 on kuvattu.",
+        "step3_desc_4": "Kieliasetukset ovat nyt valmiit.",
+        "step3_title": "3. Lisää kielipaketti tarvittaessa"
+      },
+      "phase2": {
+        "step1_desc_1": "Lataa WinTAK-sovellus puolustusvoimien määrittämästä sijainnista.",
+        "step1_desc_2": "Tärkeää! Lataa Windows-sovelluksia vain ohjeistetusta sijainnista.",
+        "step1_title": "1. Lataa WinTAK",
+        "step3_desc_1": "Etsi ladattu zip-tiedosto ja pura se. Etsi .msi-asennustiedosto zip-tiedoston Products-kansiosta.",
+        "step3_desc_2": "Kaksoispaina .msi-tiedostoa avataksesi asennusohjelman.",
+        "step3_title": "2. Avaa asennusohjelma",
+        "step4_desc_1": "Asenna WinTAK käyttämällä asennusohjelmaa.",
+        "step4_desc_2": "Paina Seuraava. Valitse asennuspaikka.",
+        "step4_desc_3": "Vaihtoehtoisesti voit muuttaa asennuspaikkaa Selaa-painikkeen avulla. Paina Seuraava.",
+        "step4_desc_4": "Valitse asennettavat komponentit asennusohjelmasta. Valitse ainakin seuraava komponentti: Tiedonsiirron synkronointi.",
+        "step4_desc_5": "Paina Seuraava. Asennusohjelma on valmis aloittamaan asennuksen, paina Asenna.",
+        "step4_title": "3. Asenna asennusohjelmalla"
+      },
+      "phase3": {
+        "step1_desc": "Avaa WinTAK-sovellus työpöydältä.",
+        "step1_title": "1. Avaa sovellus",
+        "step2_desc_1": "Hetken kuluttua Laitteen asetusten asennusohjelma avautuu.",
+        "step2_desc_2": "Ensimmäiseksi hyväksy EULA.",
+        "step2_title": "2. Hyväksy EULA",
+        "step3_desc_1": "Seuraavaksi luodaan palvelinyhteys.",
+        "step3_desc_2": "a. Sovellus kysyy, haluatko tuoda datapaketin.",
+        "step3_desc_3": "b. Valitse 'Kyllä'. Suuntaa asiakaspakettiin.",
+        "step3_desc_4": "Kun olet valinnut paketin ja painanut Avaa, valintaikkuna 'Valitse tuontistrategia' avautuu.",
+        "step3_desc_5": "c. Valitse 'UserPreferenceImportStrategy', ja paina OK.",
+        "step3_title": "3. Luo palvelinyhteys",
+        "step4_desc_1": "Viestipohjapaketin mukana voi tulla erilaisia kartan pohjia.",
+        "step4_title": "4. Valitse kartan pohja",
+        "step5_desc_1": "Laitteen asetusten asennusohjelma kysyy, haluatko määrittää kutsunimesi.",
+        "step5_desc_2": "Näitä ei tarvita, poista valinnat ja paina OK.",
+        "step5_title": "5. Aseta kutsunimi",
+        "step6_desc_1": "Sovellus kysyy, halutaanko laajennuksia asentaa.",
+        "step6_desc_2": "Seuraavaksi sovellus kysyy, halutaanko DTED-0 korkeustieto-mallit ladata automaattisesti.",
+        "step6_title": "6. Aseta laajennukset",
+        "step7_desc_1": "Nyt WinTAK:in perusasetukset on tehty. Tarkista 'Omat asetukset'.",
+        "step7_desc_2": "Tarkista myös TAK-verkko-tila. Vihreä pilvi tarkoittaa, että palvelinyhteys on kunnossa, punainen tarkoittaa, että se on katkennut.",
+        "step7_title": "7. Tarkista asetukset"
+      },
+      "phase4": {
+        "step1_desc_1": "Tarkista WinTAK:n yksikköasetukset.",
+        "step1_desc_2": "Paina kolmea pinoa, hampurilaisvalikkoa ylävasemmassa kulmassa.",
+        "step1_desc_3": "Valitse Asetukset.",
+        "step1_desc_4": "Valitse Näyttöasetukset.",
+        "step1_desc_5": "Näyttöasetukset avautuvat. Valitse Yksikkönäyttöasetukset.",
+        "step1_desc_6": "Tarkista, että asetukset ovat kuvassa näkyvien kaltaisia. Muuta tarvittaessa.",
+        "step1_title": "1. Tarkista yksikköasetukset",
+        "step2_desc": "TBD: Vianetsintä.",
+        "step2_title": "2. Vianetsintä"
+      },
+      "step1_download": "Lataa zip-paketti:",
+      "step1_note": "WinTAK käyttää samaa pakettia kuin ATAK",
+      "step2_install": "Tuo paketti.",
+      "step3_done": "Valmis, WinTAK on valmis käyttöön.",
+      "title": "WinTAK-paketin asennus",
+      "wizard_title": {
+        "phase1": "Aseta Windows-tietokoneesi kieli englanniksi",
+        "phase2": "Lataa ja asenna WinTAK",
+        "phase3": "Määritä WinTAK",
+        "phase4": "Aseta mittayksiköt"
+      }
+    }
+  },
+  "wizard": {
+    "complete": "Valmis",
+    "next": "Seuraava",
+    "previous": "Edellinen",
+    "step_counter": "Vaihe {{current}} / {{total}}"
+  }
+}

@@ -1,0 +1,179 @@
+services:
+  perm-init:
+    image: alpine:3.21@sha256:c3f8e73fdb79deaebaa2037150150191b9dcbfba68b4a46d70103204c53f4709
+    user: "0:0"
+    command: ["/bin/sh", "/scripts/prepare-bind-mounts.sh"]
+    environment:
+      CPAD_UID: ${CPAD_UID:-4001}
+      CPAD_GID: ${CPAD_GID:-4001}
+    volumes:
+      - ./docker/scripts/prepare-bind-mounts.sh:/scripts/prepare-bind-mounts.sh:ro
+      - ./volumes:/work/volumes
+    restart: "no"
+
+  cryptpad:
+    build:
+      context: .
+      dockerfile: docker/cryptpad/Dockerfile
+      args:
+        CRYPTPAD_VERSION: ${CRYPTPAD_VERSION:-2025.9.0}
+        NODE_IMAGE: ${CRYPTPAD_NODE_IMAGE:-node:22-bookworm-slim@sha256:4f77a690f2f8946ab16fe1e791a3ac0667ae1c3575c3e4d0d4589e9ed5bfaf3d}
+    image: local/cryptpad:${CRYPTPAD_VERSION:-2025.9.0}
+    depends_on:
+      perm-init:
+        condition: service_completed_successfully
+      rmcryptpad:
+        condition: service_healthy
+    user: "${CPAD_UID:-4001}:${CPAD_GID:-4001}"
+    environment:
+      CPAD_MAIN_DOMAIN: ${CPAD_MAIN_DOMAIN:-https://cryptpad.localhost:8443}
+      CPAD_SANDBOX_DOMAIN: ${CPAD_SANDBOX_DOMAIN:-https://sandbox.cryptpad.localhost:8443}
+      CPAD_SSO_NAME: ${CPAD_SSO_NAME:-rmcryptpad}
+      CPAD_SSO_ISSUER: ${CPAD_SSO_ISSUER:-https://rmcryptpad.localhost:8443}
+      CPAD_SSO_CLIENT_ID: ${CPAD_SSO_CLIENT_ID:-cryptpad}
+      CPAD_SSO_CLIENT_SECRET: ${CPAD_SSO_CLIENT_SECRET:-change-me}
+      CPAD_CONF: /cryptpad/config/config.js
+      HOME: /tmp
+    volumes:
+      - ./volumes/cryptpad/blob:/cryptpad/blob
+      - ./volumes/cryptpad/block:/cryptpad/block
+      - ./volumes/cryptpad/data:/cryptpad/data
+      - ./volumes/cryptpad/files:/cryptpad/datastore
+      - ./config/config.js:/cryptpad/config/config.js:ro
+      - ./customize:/cryptpad/customize.local:ro
+    expose:
+      - "3000"
+      - "3003"
+    init: true
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "require('http').get('http://127.0.0.1:3000', (res) => process.exit(res.statusCode >= 200 && res.statusCode < 500 ? 0 : 1)).on('error', () => process.exit(1))",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 10
+      start_period: 90s
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+    networks:
+      - cryptpad
+
+  postgres:
+    image: postgres:17-alpine@sha256:6f30057d31f5861b66f3545d4821f987aacf1dd920765f0acadea0c58ff975b1
+    user: "${CPAD_UID:-4001}:${CPAD_GID:-4001}"
+    environment:
+      POSTGRES_DB: ${RMCRYPTPAD_DATABASE_DATABASE:-rmcryptpad}
+      POSTGRES_USER: ${RMCRYPTPAD_DATABASE_USER:-rmcryptpad}
+      POSTGRES_PASSWORD: ${RMCRYPTPAD_DATABASE_PASSWORD:-change-me}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    expose:
+      - "5432"
+    volumes:
+      - ./volumes/postgres/data:/var/lib/postgresql/data
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready --dbname=$${POSTGRES_DB} --username=$${POSTGRES_USER} --host=127.0.0.1 || exit 1",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - cryptpad
+
+  rmcryptpad:
+    build:
+      context: .
+      dockerfile: rmcryptpad/Dockerfile
+    image: local/rmcryptpad:latest
+    depends_on:
+      perm-init:
+        condition: service_completed_successfully
+      postgres:
+        condition: service_healthy
+    user: "${CPAD_UID:-4001}:${CPAD_GID:-4001}"
+    environment:
+      RMCRYPTPAD_DATABASE_HOST: postgres
+      RMCRYPTPAD_DATABASE_PORT: ${RMCRYPTPAD_DATABASE_PORT:-5432}
+      RMCRYPTPAD_DATABASE_USER: ${RMCRYPTPAD_DATABASE_USER:-rmcryptpad}
+      RMCRYPTPAD_DATABASE_PASSWORD: ${RMCRYPTPAD_DATABASE_PASSWORD:-change-me}
+      RMCRYPTPAD_DATABASE_DATABASE: ${RMCRYPTPAD_DATABASE_DATABASE:-rmcryptpad}
+      RMCRYPTPAD_PUBLIC_URL: ${RMCRYPTPAD_PUBLIC_URL:-https://cryptpad.localhost:8443}
+      RMCRYPTPAD_PUBLIC_SANDBOX_URL: ${RMCRYPTPAD_PUBLIC_SANDBOX_URL:-https://sandbox.cryptpad.localhost:8443}
+      RMCRYPTPAD_OIDC_ISSUER: ${RMCRYPTPAD_OIDC_ISSUER:-https://rmcryptpad.localhost:8443}
+      RMCRYPTPAD_OIDC_CLIENT_ID: ${RMCRYPTPAD_OIDC_CLIENT_ID:-cryptpad}
+      RMCRYPTPAD_OIDC_CLIENT_SECRET: ${RMCRYPTPAD_OIDC_CLIENT_SECRET:-change-me}
+      RMCRYPTPAD_RMCN: ${RMCRYPTPAD_RMCN:-rasenmaeher}
+      RMCRYPTPAD_UI_DIR: /opt/ui/cryptpad
+    expose:
+      - "8000"
+    volumes:
+      - ./volumes/rmcryptpad/oidc:/data/oidc
+    init: true
+    read_only: true
+    tmpfs:
+      - /tmp
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import sys, urllib.request; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/api/v1/healthcheck', timeout=5).status == 200 else 1)",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - cryptpad
+
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+      args:
+        NGINX_IMAGE: ${CRYPTPAD_NGINX_IMAGE:-nginx:1.28-alpine@sha256:5b4900b042ccfa8b0a73df622c3a60f2322faeb2be800cbee5aa7b44d241649e}
+    image: local/cryptpad-nginx:latest
+    depends_on:
+      cryptpad:
+        condition: service_healthy
+      rmcryptpad:
+        condition: service_healthy
+    environment:
+      CRYPTPAD_MAIN_HOST: ${CRYPTPAD_MAIN_HOST:-cryptpad.localhost}
+      CRYPTPAD_SANDBOX_HOST: ${CRYPTPAD_SANDBOX_HOST:-sandbox.cryptpad.localhost}
+      CRYPTPAD_RM_HOST: ${CRYPTPAD_RM_HOST:-rmcryptpad.localhost}
+    ports:
+      - "${CPAD_HTTPS_PORT:-8443}:443"
+    volumes:
+      - ./volumes/nginx/certs:/etc/nginx/certs
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /var/cache/nginx
+      - /var/run
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - cryptpad
+
+networks:
+  cryptpad:
+    driver: bridge

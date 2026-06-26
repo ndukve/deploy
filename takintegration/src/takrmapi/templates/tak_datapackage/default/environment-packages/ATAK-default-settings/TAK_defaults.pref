@@ -1,0 +1,136 @@
+<?xml version='1.0' standalone='yes'?>
+<preferences>
+ <preference version="1" name="com.atakmap.app.civ_preferences">
+  <!-- Clear content -->
+  <entry key="clearingContent" class="class java.lang.Boolean">true</entry>
+  <!-- Download datapackages automatically from server -->
+  <entry key="deviceProfileEnableOnConnect" class="class java.lang.Boolean">true</entry>
+  <entry key="pref_import_pref_action" class="class java.lang.String">ALLOW</entry>
+  <!-- Scan plugins on ATAK startup -->
+  <entry key="atakPluginScanningOnStartup" class="class java.lang.Boolean">true</entry>
+  <entry key="repoStartupSync" class="class java.lang.Boolean">true</entry>
+  <!-- Disable tak.gov connections -->
+  <entry key="eud_api_disable_option" class="class java.lang.Boolean">false</entry>
+  <entry key="eud_api_sync_mapsources" class="class java.lang.Boolean">false</entry>
+  <entry key="eud_api_sync_plugins" class="class java.lang.Boolean">false</entry>
+  <!-- Alert options -->
+  <entry key="alert_audible" class="class java.lang.Boolean">false</entry>
+  <entry key="alert_notification" class="class java.lang.Boolean">true</entry>
+  <entry key="alert_vibration" class="class java.lang.Boolean">true</entry>
+  <entry key="individual_alert_notification" class="class java.lang.Boolean">false</entry>
+  <!-- Notifications options -->
+  <entry key="audibleNotify" class="class java.lang.Boolean">false</entry>
+  <entry key="fade_notification" class="class java.lang.String">300</entry>
+  <entry key="vibratePhone" class="class java.lang.Boolean">true</entry>
+  <entry key="useRouteVoiceCues" class="class java.lang.Boolean">false</entry>
+  <!-- ATAK display preferencces -->
+  <entry key="nav_orientation_right" class="class java.lang.Boolean">true</entry>
+  <entry key="self_coord_info_display" class="class java.lang.String">bottom_bar</entry>
+  <entry key="monitorServerConnections" class="class java.lang.Boolean">true</entry>
+  <entry key="imagery_tab_name" class="class java.lang.String">Maps</entry>
+  <entry key="map_scale_visible" class="class java.lang.Boolean">true</entry>
+  <entry key="map_scale_rounding" class="class java.lang.Boolean">true</entry>
+  <entry key="map_center_designator" class="class java.lang.Boolean">false</entry>
+  <entry key="screenViewMapTilt" class="class java.lang.Float">0.0</entry>
+  <entry key="rab_color_pref" class="class java.lang.String">red</entry>
+  <entry key="status_tilt_enabled" class="class java.lang.Boolean">true</entry>
+  <entry key="lastViewedLayer.autoselect" class="class java.lang.Boolean">true</entry>
+  <entry key="viewshed_prefs_height_above" class="class java.lang.Integer">0</entry>
+  <entry key="disableFloatToBottom" class="class java.lang.Boolean">false</entry>
+  <!-- ATAK display as tactical symbols default false -->
+  <entry key="displayAsSymbologyGraphic" class="class java.lang.Boolean">false</entry>
+  <entry key="set_domain_pref" class="class java.lang.String">Ground</entry>
+  <!-- ATAK action preferences -->
+  <entry key="atakLongPressMap" class="class java.lang.String">nothing</entry>
+  <entry key="atakDoubleTapToZoom" class="class java.lang.Boolean">true</entry>
+  <entry key="self_coord_action" class="class java.lang.String">nothing</entry>
+  <!-- Selected Map  -->
+  <entry key="MobileLayerSelectionAdapter.selected" class="class java.lang.String">4 Google Hybrid</entry>
+  <entry key="rng_meters_display_pref" class="class java.lang.String">2000</entry>
+  <!-- Enable smart cache for maps 2Gbts -->
+  <entry key="prefs_enable_smart_cache" class="class java.lang.Boolean">true</entry>
+  <entry key="prefs_smart_cache_download_limit" class="class java.lang.String">2000000</entry>
+  <!-- Elevation  -->
+  <entry key="pull_elevation_mode" class="class java.lang.String">best</entry>
+  <entry key="force_dted_elevation_only" class="class java.lang.Boolean">false</entry>
+  <entry key="enableGeocoder" class="class java.lang.Boolean">true</entry>
+  <!-- Default measure units to Metric -->
+  <!-- Unit for Speed, 0 = imperial 1 = metric -->
+  <entry key="speed_unit_pref" class="class java.lang.String">1</entry>
+  <!-- Bearing units -->
+  <entry key="rab_brg_units_pref" class="class java.lang.String">0</entry>
+  <!-- Metric force -->
+  <entry key="rab_rng_units_pref" class="class java.lang.String">1</entry>
+  <entry key="status_3d_enabled" class="class java.lang.Boolean">true</entry>
+  <!-- Height over Sea level force -->
+  <entry key="alt_display_pref" class="class java.lang.String">MSL</entry>
+  <entry key="alt_display_agl" class="class java.lang.Boolean">false</entry>
+  <!-- MGRS Coordinate force -->
+  <entry key="coord_display_pref" class="class java.lang.String">MGRS</entry>
+  <entry key="coordinate_entry_last_selected" class="class java.lang.String">mgrs_pane_id</entry>
+  <!-- True north force -->
+  <entry key="rab_north_ref_pref" class="class java.lang.String">0</entry>
+  <!-- Altitude data, 0 = imperial 1= metric -->
+  <entry key="alt_unit_pref" class="class java.lang.String">1</entry>
+  <entry key="lastViewedLayer.active" class="class java.lang.String">Mobile</entry>
+  <!-- 0 = 360 degree / 1 = Milrad (NATO) -->
+  <entry key="rab_brg_units_pref" class="class java.lang.String">0</entry>
+  <!-- Display ETA on Range and Bearing Labels -->
+  <entry key="rab_preference_show_eta" class="class java.lang.Boolean">true</entry>
+  <!-- Hide Phone number -->
+  <entry key="saHasPhoneNumber" class="class java.lang.Boolean">false</entry>
+  <entry key="locationUnitType" class="class java.lang.String">a-f-G-U-C</entry>
+  <entry key="viewshed_prefs_radius" class="class java.lang.Integer">1000</entry>
+  <entry key="offscreen_indicator_dist_threshold" class="class java.lang.String">1</entry>
+  <entry key="offscreen_indicator_timeout_threshold" class="class java.lang.String">60</entry>
+  <!-- Location provider settings -->
+  <entry key="enableLocationInputManager" class="class java.lang.Boolean">true</entry>
+  <entry key="location_provider_status.internal-android-network" class="class java.lang.Boolean">true</entry>
+  <entry key="location_provider_status.internal-gps-chip" class="class java.lang.Boolean">true</entry>
+  <entry key="location_provider_status.manual-placed-provider" class="class java.lang.Boolean">true</entry>
+  <entry key="location_provider_status.serial-monitor-internal" class="class java.lang.Boolean">true</entry>
+  <entry key="location_provider_status.streaming-nmea-internal" class="class java.lang.Boolean">false</entry>
+  <!-- Location reporting settings -->
+  <entry key="locationReportingStrategy" class="class java.lang.String">Dynamic</entry>
+  <entry key="dynamicReportingRateMaxReliable" class="class java.lang.String">10</entry>
+  <entry key="dynamicReportingRateMaxUnreliable" class="class java.lang.String">30</entry>
+  <entry key="dynamicReportingRateMinReliable" class="class java.lang.String">30</entry>
+  <entry key="dynamicReportingRateMinUnreliable" class="class java.lang.String">60</entry>
+  <entry key="dynamicReportingRateStationaryReliable" class="class java.lang.String">120</entry>
+  <entry key="dynamicReportingRateStationaryUnreliable" class="class java.lang.String">180</entry>
+  <!-- Stale out offline users and information -->
+  <entry key="staleRemoteDisconnects" class="class java.lang.Boolean">true</entry>
+  <entry key="expireEverything" class="class java.lang.Boolean">true</entry>
+  <entry key="expireUnknowns" class="class java.lang.Boolean">true</entry>
+  <!-- Stale out data timer 0 = Immediately 1-1440 time in minutes -->
+  <entry key="expireStaleItemsTime" class="class java.lang.String">5</entry>
+  <!-- Enable user location -->
+  <entry key="user_location.enabled" class="class java.lang.Boolean">true</entry>
+  <entry key="scrollToSelfOnStart" class="class java.lang.Boolean">true</entry>
+  <!-- Force ATAK Languege to English -->
+  <entry key="forceEnglish" class="class java.lang.Boolean">true</entry>
+  <!-- Avoid accidential quit or shutdown of ATAK -->
+  <entry key="atakControlQuitOnBack" class="class java.lang.Boolean">false</entry>
+  <entry key="atakControlAskToQuit" class="class java.lang.Boolean">true</entry>
+  <entry key="lastDirectory" class="class java.lang.String">/storage/emulated/0/Download</entry>
+  <!-- Additional security -->
+  <entry key="certEnrollmentExport" class="class java.lang.Boolean">false</entry>
+  <!-- Connected to takserver conf -->
+  <entry key="broadcast_disable" class="class java.lang.Boolean">true</entry>
+  <entry key="autoDisableMeshSAWhenStreaming" class="class java.lang.Boolean">true</entry>
+  <!-- Plugin Settings -->
+  <!-- Data Sync Settings -->
+  <entry key="shouldLoad-com.atakmap.android.datasync.plugin" class="class java.lang.Boolean">true</entry>
+  <entry key="datasyncAutoAcceptInvite" class="class java.lang.Boolean">true</entry>
+  <entry key="datasyncAutodownload" class="class java.lang.Boolean">true</entry>
+  <entry key="datasyncDisplayMissionTimeline" class="class java.lang.Boolean">false</entry>
+  <entry key="datasyncDisplayPublishPrompt" class="class java.lang.Boolean">true</entry>
+  <entry key="datasyncDisplayRemovalPrompt" class="class java.lang.Boolean">true</entry>
+  <entry key="datasyncDontAskAgain" class="class java.lang.Boolean">false</entry>
+  <entry key="datasyncLargeFilePrompt" class="class java.lang.String">30</entry>
+  <entry key="datasyncRequireServerConn" class="class java.lang.Boolean">true</entry>
+  <entry key="datasyncShowNonFeedContent" class="class java.lang.Boolean">true</entry>
+  <!-- VNS Settings -->
+  <entry key="shouldLoad-com.atakmap.android.vns.plugin" class="class java.lang.Boolean">true</entry>
+ </preference>
+</preferences>

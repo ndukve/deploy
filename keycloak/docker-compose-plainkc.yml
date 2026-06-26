@@ -1,0 +1,70 @@
+version: '3.7'
+
+x-kc_dbconfig_env: &kcdbconfig_env
+  KEYCLOAK_DATABASE_NAME: &kcdbname postgres
+  KEYCLOAK_DATABASE_HOST: postgres
+  KEYCLOAK_DATABASE_USER: &kcdbuser keycloak
+  # FIXME: take from env (which should be set to random)
+  KEYCLOAK_DATABASE_PASSWORD: &kcdbpass keycloakpwd # pragma: allowlist secret
+
+x-keycloak_users_env: &keycloak_users_env
+  KEYCLOAK_CREATE_ADMIN_USER: true
+  KEYCLOAK_ADMIN_USER: &kcadminuser admin
+  KEYCLOAK_MANAGEMENT_USER: damager
+  # FIXME: take from env (which should be set to random)
+  KEYCLOAK_ADMIN_PASSWORD: &kcadminpass kcadminpw # pragma: allowlist secret
+  KEYCLOAK_MANAGEMENT_PASSWORD: kcmgrpw # pragma: allowlist secret
+
+services:
+
+  postgres:
+    image: postgres:12
+    networks:
+      - dbnet
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ca_public:/ca
+    environment:
+      POSTGRES_PASSWORD: *kcdbpass # pragma: allowlist secret
+      POSTGRES_USER: *kcdbuser
+      POSTGRES_DATABASE: *kcdbname
+    healthcheck:
+      test: "pg_isready --dbname=$$POSTGRES_DB --username=$$POSTGRES_USER || exit 1"
+      interval: 5s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+  keycloak:
+    image: bitnami/keycloak:${KEYCLOAK_VERSION:-22.0.4}
+    ports:
+      - '8280:8080'  # do not expose this in production
+      - '9443:8443'
+    environment:
+      <<: [*kcdbconfig_env, *keycloak_users_env]
+      KC_HEALTH_ENABLED: true
+    networks:
+      - kcnet
+      - dbnet
+    volumes:
+      - keycloak_data:/bitnami/keycloak/
+      - ca_public:/ca_public
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: "curl -s localhost:8080/health/ready | grep status | grep UP || exit 1"
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 15s
+
+
+networks:
+  kcnet:
+  dbnet:
+
+volumes:
+  pg_data:
+  keycloak_data:
+  ca_public:

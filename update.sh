@@ -1,6 +1,5 @@
 #!/bin/bash
-# update.sh — Pull latest images and restart the RASENMAEHER stack.
-# Run from the deploy directory.
+# update.sh — Pull latest and restart the RASENMAEHER stack.
 
 set -euo pipefail
 
@@ -14,19 +13,36 @@ err()  { echo -e "${RED}[✗]${NC} $*"; exit 1; }
 
 [ -f "$ENV_FILE" ] || err ".env not found — run ./install.sh first"
 
+# Detect which compose file was used
+if docker compose -p rmlocal ps --quiet 2>/dev/null | grep -q .; then
+    COMPOSE="docker compose -p rmlocal -f docker-compose-local.yml"
+    DOCKER_REPO_PREFIX="localhost:5050/"
+    LOCAL_MODE=true
+else
+    COMPOSE="docker compose -f docker-compose.yml"
+    DOCKER_REPO_PREFIX=""
+    LOCAL_MODE=false
+fi
+
 cd "$SCRIPT_DIR"
 
-info "Pulling latest images..."
-docker compose pull --quiet
-ok "Images pulled"
+if $LOCAL_MODE; then
+    info "Rebuilding all images (local mode)..."
+    PVARKI_DOCKER_REPO="$DOCKER_REPO_PREFIX" $COMPOSE build --pull --quiet
+    ok "Images rebuilt"
+    info "Restarting stack..."
+    PVARKI_DOCKER_REPO="$DOCKER_REPO_PREFIX" $COMPOSE up -d --remove-orphans
+else
+    info "Pulling latest images..."
+    $COMPOSE pull --quiet
+    ok "Images pulled"
+    info "Rebuilding TAK server..."
+    $COMPOSE build --quiet takserver
+    ok "TAK server rebuilt"
+    info "Restarting stack..."
+    $COMPOSE up -d --remove-orphans
+fi
 
-info "Rebuilding TAK server..."
-docker compose build --quiet takserver
-ok "TAK server rebuilt"
-
-info "Restarting stack..."
-docker compose up -d --remove-orphans
 ok "Stack restarted"
-
 echo ""
-echo -e "  ${BOLD}Done.${NC}  Logs: docker compose logs -f"
+echo -e "  ${BOLD}Done.${NC}  Logs: $COMPOSE logs -f"

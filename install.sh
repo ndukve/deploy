@@ -259,8 +259,14 @@ cd "$SCRIPT_DIR"
 COMPOSE="docker compose $COMPOSE_PROJECT -f $COMPOSE_FILE"
 
 if $LOCAL_MODE; then
+    # takrmapi builds FROM the takserver image — build and push it to the local
+    # registry first so it's available when the parallel build starts.
+    start_timer "Building TAK server image (base for takrmapi)..."
+    PVARKI_DOCKER_REPO="$DOCKER_REPO_PREFIX" $COMPOSE build --pull --push --quiet takserver
+    stop_timer; ok "TAK server built and pushed to local registry"
+
     start_timer "Building all images (local mode — first build takes 10-20 min)..."
-    PVARKI_DOCKER_REPO="$DOCKER_REPO_PREFIX" $COMPOSE build --pull --quiet
+    PVARKI_DOCKER_REPO="$DOCKER_REPO_PREFIX" $COMPOSE build --quiet
     stop_timer; ok "Images built"
 else
     start_timer "Pulling pre-built images from ghcr.io..."

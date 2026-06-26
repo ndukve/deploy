@@ -79,13 +79,13 @@ The following ports must be reachable from the internet (or at minimum from your
 
 ## Step 3 — Run the Installer
 
-Clone the repository and run the installer as root:
+Run the installer as root:
 
 ```bash
-git clone https://github.com/ndukve/deploy.git
-cd deploy
-sudo ./install.sh
+curl -fsSL https://raw.githubusercontent.com/ndukve/deploy/main/install.sh | bash
 ```
+
+> The script clones the repository automatically if not already present. Root is required — it will re-run itself with `sudo` if needed.
 
 The installer will prompt for:
 - **Domain** — your base domain (e.g. `example.com`)

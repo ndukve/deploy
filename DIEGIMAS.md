@@ -79,13 +79,13 @@ mtls.rmcryptpad.jusudomenas.lt
 
 ## 3 žingsnis — Paleisti diegiklį
 
-Klonuokite repozitoriją ir paleiskite diegiklį kaip root:
+Paleiskite diegiklį kaip root:
 
 ```bash
-git clone https://github.com/ndukve/deploy.git
-cd deploy
-sudo ./install.sh
+curl -fsSL https://raw.githubusercontent.com/ndukve/deploy/main/install.sh | bash
 ```
+
+> Skriptas automatiškai klonuoja repozitoriją, jei ji dar nėra. Reikalingos root teisės — skriptas paleis save su `sudo`, jei reikia.
 
 Diegiklis paklaus:
 - **Domenas** — jūsų pagrindinis domenas (pvz. `pavyzdys.lt`)

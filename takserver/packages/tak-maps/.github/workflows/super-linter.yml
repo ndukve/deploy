@@ -1,0 +1,28 @@
+# Lints only XML files (maps) that changed in the commit / PR.
+name: Lint XML Maps
+
+on:
+  pull_request:
+    paths:
+      - "**/*.xml"
+  push:
+    branches: [master]
+    paths:
+      - "**/*.xml"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+
+      - name: Run Super-Linter
+        uses: github/super-linter@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BRANCH: master
+          VALIDATE_XML: false
+          VALIDATE_JSCPD: false
+          VALIDATE_PYTHON_ISORT: false
+          VALIDATE_ALL_CODEBASE: false

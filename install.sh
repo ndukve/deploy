@@ -260,10 +260,12 @@ cd "$SCRIPT_DIR"
 COMPOSE="docker compose $COMPOSE_PROJECT -f $COMPOSE_FILE"
 
 if $LOCAL_MODE; then
-    # takrmapi builds FROM the takserver image — build and push it to the local
-    # registry first so it's available when the parallel build starts.
+    # takrmapi (takintegration) builds FROM the takserver image. The image is
+    # defined via a YAML anchor shared by takinit/takconfig/etc — no standalone
+    # "takserver" service exists. Build takinit first and push so the image is
+    # in the local registry before the parallel build starts.
     start_timer "Building TAK server image (base for takrmapi)..."
-    PVARKI_DOCKER_REPO="$DOCKER_REPO_PREFIX" $COMPOSE build --pull --push --quiet takserver
+    PVARKI_DOCKER_REPO="$DOCKER_REPO_PREFIX" $COMPOSE build --pull --push --quiet takinit
     stop_timer; ok "TAK server built and pushed to local registry"
 
     start_timer "Building all images (local mode — first build takes 10-20 min)..."

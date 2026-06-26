@@ -16,7 +16,8 @@ if [ ! -f "$SCRIPT_DIR/docker-compose.yml" ]; then
         apt-get update -qq && apt-get install -y -qq git
     fi
     if [ -d "$INSTALL_DIR/.git" ]; then
-        git -C "$INSTALL_DIR" pull --ff-only
+        git -C "$INSTALL_DIR" fetch origin
+        git -C "$INSTALL_DIR" reset --hard origin/main
     else
         git clone "$REPO_URL" "$INSTALL_DIR"
     fi

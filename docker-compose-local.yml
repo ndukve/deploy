@@ -1088,11 +1088,11 @@ services:
       - "8003:8003"  # NOTE: Do *NOT* expose this in production, this is the port for takrmapi
     command: ./opt/scripts/start-tak.sh config
     healthcheck:
-      test: 'true'  # FIXME
-      interval: 5s
-      timeout: 5s
-      retries: 3
-      start_period: 120s
+      test: 'bash -c "echo > /dev/tcp/localhost/8443" 2>/dev/null'
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 300s
     restart: unless-stopped
 
   takmsg:
@@ -1112,11 +1112,11 @@ services:
     network_mode: "service:takconfig"
     command: ./opt/scripts/start-tak.sh messaging
     healthcheck:
-      test: 'true'  # FIXME
-      interval: 5s
-      timeout: 5s
-      retries: 3
-      start_period: 120s
+      test: 'bash -c "echo > /dev/tcp/localhost/8089" 2>/dev/null'
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 300s
     restart: unless-stopped
 
   takapi:
@@ -1136,11 +1136,11 @@ services:
     network_mode: "service:takconfig"
     command: ./opt/scripts/start-tak.sh api
     healthcheck:
-      test: 'true'  # FIXME
-      interval: 5s
-      timeout: 5s
-      retries: 3
-      start_period: 120s
+      test: 'bash -c "echo > /dev/tcp/localhost/8443" 2>/dev/null'
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 300s
     restart: unless-stopped
 
   takreten:

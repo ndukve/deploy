@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ -z "TAK_PASSWORD" ]
+if [ -z "$TAK_PASSWORD" ]
 then
   echo "TAK_PASSWORD not set, not creating the DB"
   exit 0
